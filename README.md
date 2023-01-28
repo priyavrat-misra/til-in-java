@@ -17,7 +17,7 @@
 - the class loader will look for `.class` files in the classpath during runtime.
 - the `-cp` flag can also be used during compile time to let compiler know where the classes are present.
 - a `.jar` file can also be a classpath i.e., the `-cp` flag may contain both directories as well as files.
-- multiple classpaths can be separated by using a ":" in Linux and a ";" in Windows.
+- multiple classpaths can be separated by using <kbd>:</kbd> in Linux and <kbd>;</kbd> in Windows.
 ###### Day 02
 - once the type of a variable is set it can not be changed later as Java is a _statically typed language_.
 - if the variable type is a class, then the variable will be an object reference.
@@ -26,4 +26,12 @@
   - _instance variables_: declared in a class but outside any methods, constructors or blocks.
   - _class/static variables_: declared with the `static` keyword in a class but outside any methods, constructors or blocks. 
 - _local variables_ must be initialized with a value before they are used.
+###### Day 03
+- `String` objects are immutable i.e., we cannot change the object itself, but we can change the reference to the object.
+- `StringBuilder` and `StringBuffer` objects are mutable i.e, they can be used for dynamic string manipulation.
+- in an expression if either operand in `+` is a `String` object, then Java converts the other operand to a `String` and creates a new `String` object by concatenating both operands.
+- for `String`, each time a string is concatenated, a new object is created and it's the main reason why it's not recommended for cases where a lot of string manipulation is needed, instead using a `StringBuilder` or `StringBuffer` will be more efficient.
+- operator overloading is not possible. Note that _string concatenation operator_ `+` is not an overloaded operator.
+- the _string concatenation operator_ is just syntactic sugar, it is actually implemented through the use of the `StringBuilder` or `StringBuffer` classes' `append()` method.
+- the compiler automatically converts an expression with _string concatenation operator_ into a series of calls to the `append()` method.
 </samp>
