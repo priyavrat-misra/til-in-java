@@ -34,4 +34,41 @@
 - operator overloading is not possible. Note that _string concatenation operator_ `+` is not an overloaded operator.
 - the _string concatenation operator_ is just syntactic sugar, it is actually implemented through the use of the `StringBuilder` or `StringBuffer` classes' `append()` method.
 - the compiler automatically converts an expression with _string concatenation operator_ into a series of calls to the `append()` method.
+> ```java
+> String s1 = "Hello";
+> String s2 = "World";
+> String s3 = s1 + " " + s2;
+> ```
+> is equivalent to:
+> ```java
+> String s1 = "Hello";
+> String s2 = "World";
+> StringBuilder sb = new StringBuilder();
+> sb.append(s1).append(" ").append(s2);
+> String s3 = sb.toString();
+> ```
+###### Dat 04
+- array and class variables are pointers.
+- a default initial value is assigned to each element of a newly allocated array if no initial value is specified. For numerical types it is `0`, for boolean it is `false` and for any pointer it is `null`.
+- 2D arrays need not be rectangular, each row can be of different length.
+> ```java
+> int[][] A = new int[3][4];  // rectangular
+>
+> int[][] B;                  // not rectangular
+> B = new int[3][];
+> B[0] = new int[1];
+> B[1] = new int[2];
+> B[2] = new int[5];
+> ```
+- we can copy an array using the `arraycopy` function. Like the output function `println`, `arraycopy` is provided in `java.lang.System`, so we must use the name `System.arraycopy`. The function has five parameters:
+  - _src_: the source array
+  - _srcPos_: the starting position in the source array
+  - _dst_: the destination array
+  - _dstPos_: the starting position in the destination array
+  - _count_: number of values to copy
+> ```java
+> // to shift the values in an array:
+> int[] A = {0, 1, 2, 3, 4};
+> System.arraycopy(A, 0, A, 1, 4);
+> ```
 </samp>
