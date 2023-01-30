@@ -61,7 +61,7 @@
 > B[2] = new int[5];
 > ```
 - we can copy an array using the `arraycopy` function. Like the output function `println`, `arraycopy` is provided in `java.lang.System`, so we must use the name `System.arraycopy`. The function has five parameters:
-  - _src_: the source arraG
+  - _src_: the source array
   - _srcPos_: the starting position in the source array
   - _dst_: the destination array
   - _dstPos_: the starting position in the destination array
@@ -79,5 +79,5 @@
 > int minValue = Integer.MIN_VALUE;
 > int maxValue = Integer.MAX_VALUE;
 > ```
-- numbers like 0.1, 0.2 etc. can not be accurately represented with IEEE 754 standard. The crux of the problem is that numbers are represented in this format as a whole number times a power of two; rational numbers (such as 0.1, which is 1/10) whose denominator is not a power of two cannot be exactly represented.
+- some numbers like 0.1, 0.2 etc. can not be accurately represented with IEEE 754 standard as numbers represented in this format are a whole number times a power of two; rational numbers (such as 0.1, which is 1/10) whose denominator is not a power of two cannot be exactly represented.
 </samp>
