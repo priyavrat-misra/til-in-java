@@ -47,7 +47,7 @@
 > sb.append(s1).append(" ").append(s2);
 > String s3 = sb.toString();
 > ```
-###### Dat 04
+###### Day 04
 - array and class variables are pointers.
 - a default initial value is assigned to each element of a newly allocated array if no initial value is specified. For numerical types it is `0`, for boolean it is `false` and for any pointer it is `null`.
 - 2D arrays need not be rectangular, each row can be of different length.
@@ -61,7 +61,7 @@
 > B[2] = new int[5];
 > ```
 - we can copy an array using the `arraycopy` function. Like the output function `println`, `arraycopy` is provided in `java.lang.System`, so we must use the name `System.arraycopy`. The function has five parameters:
-  - _src_: the source array
+  - _src_: the source arraG
   - _srcPos_: the starting position in the source array
   - _dst_: the destination array
   - _dstPos_: the starting position in the destination array
@@ -71,4 +71,13 @@
 > int[] A = {0, 1, 2, 3, 4};
 > System.arraycopy(A, 0, A, 1, 4);
 > ```
+###### Day 05
+- there are no `byte` or `short` literals but only `int` and `long` literals. <kbd>_</kbd> can be used to improve readability of the literals. We can make a literal `long` by appending  <kbd>L</kbd> or <kbd>l</kbd>.
+- a `long` literal can't be assigned to an `byte`, `short` or `int` variable. The compiler will throw an "possible lossy conversion" error. Similarly a `double` literal can't be assigned to an `float` variable. 
+- every primitive type has an associated boxed primitive, which have a lot of predefined functions and variables to make things easy.
+> ```java
+> int minValue = Integer.MIN_VALUE;
+> int maxValue = Integer.MAX_VALUE;
+> ```
+- numbers like 0.1, 0.2 etc. can not be accurately represented with IEEE 754 standard. The crux of the problem is that numbers are represented in this format as a whole number times a power of two; rational numbers (such as 0.1, which is 1/10) whose denominator is not a power of two cannot be exactly represented.
 </samp>
