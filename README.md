@@ -97,5 +97,5 @@
 > }
 > ```
 - only numeric to numeric casting is possible. Note that `char` also falls under numeric data type as it is represented by an unsigned `int`.
-- can not cast anything to `boolean` or vice-versa, as it is not a numeric primitive, the only non-numeric primitive.
+- we can not cast anything to `boolean` or vice-versa, as it is not a numeric primitive (the only non-numeric primitive).
 </samp>
