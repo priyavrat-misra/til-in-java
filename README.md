@@ -79,5 +79,5 @@
 > int minValue = Integer.MIN_VALUE;
 > int maxValue = Integer.MAX_VALUE;
 > ```
-- some numbers like 0.1, 0.2 etc. can not be accurately represented with IEEE 754 standard as numbers represented in this format are a whole number times a power of two; rational numbers (such as 0.1, which is 1/10) whose denominator is not a power of two cannot be exactly represented.
+- some numbers like 0.1, 0.2 etc. can not be accurately represented with IEEE 754 standard, as numbers represented in this format are a whole number times a power of two; rational numbers (such as 0.1, which is 1/10) whose denominator is not a power of two cannot be exactly represented.
 </samp>
