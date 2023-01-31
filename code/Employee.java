@@ -1,9 +1,11 @@
 public class Employee {
 	int age;
+	String name;
 	static int count;
 	final String dept = "R&D";
 
-	Employee (int age) {
+	Employee (String name, int age) {
+		this.name = name;
 		this.age = age;
 		count += 1;
 	}
@@ -12,17 +14,21 @@ public class Employee {
 		this.age = age;
 	}
 
+	public String getName() {
+		return this.name;
+	}
+
 	public int getAge() {
 		return this.age;
 	}
 
 	public static void main(String[] args) {
-		Employee e1 = new Employee(24);
-		Employee e2 = new Employee(40);
+		Employee e1 = new Employee("abc", 24);
+		Employee e2 = new Employee("xyz", 40);
 
 		System.out.printf("Employee Count: %d\nEmployee Dept: %s\n", Employee.count, e1.dept);
-		System.out.printf("e1's age: %d\n", e1.getAge());
+		System.out.printf("%s's age: %d\n", e1.getName(), e1.getAge());
 		e1.setAge(25);
-		System.out.printf("e1's new age: %d\n", e1.getAge());
+		System.out.printf("%s's new age: %d\n", e1.getName(), e1.getAge());
 	}
 }

@@ -48,8 +48,8 @@
 > String s3 = sb.toString();
 > ```
 ###### Day 04
-- array and class variables are pointers.
-- a default initial value is assigned to each element of a newly allocated array if no initial value is specified. For numerical types it is `0`, for boolean it is `false` and for any pointer it is `null`.
+- array and class variables are pointers/object references.
+- a default initial value is assigned to each element of a newly allocated array if no initial value is specified. For numerical types it is `0`, for boolean it is `false` and for any pointer/object reference it is `null`.
 - 2D arrays need not be rectangular, each row can be of different length.
 > ```java
 > int[][] A = new int[3][4];  // rectangular
@@ -80,4 +80,22 @@
 > int maxValue = Integer.MAX_VALUE;
 > ```
 - some numbers like 0.1, 0.2 etc. can not be accurately represented with IEEE 754 standard, as numbers represented in this format are a whole number times a power of two; rational numbers (such as 0.1, which is 1/10) whose denominator is not a power of two cannot be exactly represented.
+###### Day 06
+- instance and class/static variables are assigned a default value if nothing is assigned, for numerical types it is `0`, for boolean it is `false` and for any pointer/object reference it is `null`.
+- assignment statements aren't possible in the class level but if they are a part of a declaration statement then it is possible. 
+> ```java
+> class Example {
+> 	int a, b = 10;
+> 	a = 10;          // not possible
+> }
+> ```
+> whereas,
+> ```java
+> class Example {
+> 	int a;
+> 	int b = a = 10;  // possible
+> }
+> ```
+- only numeric to numeric casting is possible. Note that `char` also falls under numeric data type as it is represented by an unsigned `int`.
+- can not cast anything to `boolean` or vice-versa, as it is not a numeric primitive, the only non-numeric primitive.
 </samp>
