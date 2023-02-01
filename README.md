@@ -1,6 +1,19 @@
 <samp>
 
 ### Today I Learned in Java ...
+
+<details>
+<summary>Jump to Day</summary>
+<a href="#day-00">00</a> •
+<a href="#day-01">01</a> •
+<a href="#day-02">02</a> •
+<a href="#day-03">03</a> •
+<a href="#day-04">04</a> •
+<a href="#day-05">05</a> •
+<a href="#day-06">06</a> •
+<a href="#day-07">07</a>
+</details>
+
 ###### Day 00
 - everything is always passed by value.
 - there can be more than one class defined in a file but only one of them can be public.
