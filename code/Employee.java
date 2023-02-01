@@ -31,14 +31,16 @@ public class Employee {
 	}
 
 	public static void main(String[] args) {
-		Employee e1 = new Employee("abc", 24);
-		Employee e2 = new Employee();
-		e2.setName("xyz");
-		e2.setAge(23);
+		Employee[] employee = {
+			new Employee("abc", 24),
+			new Employee()
+		};
+		employee[1].setName("xyz");
+		employee[1].setAge(23);
 
-		System.out.printf("Employee Count: %d\nEmployee Dept: %s\n", Employee.count, e1.dept);
-		System.out.printf("%s's age: %d\n", e1.getName(), e1.getAge());
-		e1.setAge(25);
-		System.out.printf("%s's new age: %d\n", e1.getName(), e1.getAge());
+		System.out.printf("Employee Count: %d\nEmployee Dept: %s\n", Employee.count, employee[0].dept);
+		System.out.printf("%s's age: %d\n", employee[0].getName(), employee[0].getAge());
+		employee[0].setAge(25);
+		System.out.printf("%s's new age: %d\n", employee[0].getName(), employee[0].getAge());
 	}
 }

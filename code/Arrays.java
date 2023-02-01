@@ -15,7 +15,7 @@ public class Arrays {
 			System.out.printf(" %d", i);
 		System.out.println();
 
-		System.arraycopy(A, 0, A, 1, n - 1);
+		System.arraycopy(A, 0, A, 1, A.length - 1);
 
 		System.out.print("shifted A\t:");
 		for (int i : A)

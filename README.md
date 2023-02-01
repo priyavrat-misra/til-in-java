@@ -22,9 +22,9 @@
 - once the type of a variable is set it can not be changed later as Java is a _statically typed language_.
 - if the variable type is a class, then the variable will be an object reference.
 - there are 3 types of variables in Java:
-  - _local variables_: declared in methods, constructors or blocks.
-  - _instance variables_: declared in a class but outside any methods, constructors or blocks.
-  - _class/static variables_: declared with the `static` keyword in a class but outside any methods, constructors or blocks. 
+  - **local variables**: declared in methods, constructors or blocks.
+  - **instance variables**: declared in a class but outside any methods, constructors or blocks.
+  - **class/static variables**: declared with the `static` keyword in a class but outside any methods, constructors or blocks. 
 - _local variables_ must be initialized with a value before they are used.
 ###### Day 03
 - `String` objects are immutable i.e., we cannot change the object itself, but we can change the reference to the object.
@@ -50,7 +50,7 @@
 ###### Day 04
 - array and class variables are pointers/object references.
 - a default initial value is assigned to each element of a newly allocated array if no initial value is specified. For numerical types it is `0`, for boolean it is `false` and for any pointer/object reference it is `null`.
-- 2D arrays need not be rectangular, each row can be of different length.
+- 2D arrays need not be rectangular, each row can be of different length. Helpful for symmetric matrices.
 > ```java
 > int[][] A = new int[3][4];  // rectangular
 >
@@ -82,7 +82,7 @@
 - some numbers like 0.1, 0.2 etc. can not be accurately represented with IEEE 754 standard, as numbers represented in this format are a whole number times a power of two; rational numbers (such as 0.1, which is 1/10) whose denominator is not a power of two cannot be exactly represented.
 ###### Day 06
 - instance and class/static variables are assigned a default value if nothing is assigned, for numerical types it is `0`, for boolean it is `false` and for any pointer/object reference it is `null`.
-- assignment statements aren't possible in the class level but if they are a part of a declaration statement then it is possible. 
+- assignment statements aren't possible in the class level but if they are a part of a declaration statement then it is possible.
 > ```java
 > class Example {
 > 	int a, b = 10;
@@ -96,6 +96,46 @@
 > 	int b = a = 10;  // possible
 > }
 > ```
+- expression and control flow statements aren't possible in the class level.
 - only numeric to numeric casting is possible. Note that `char` also falls under numeric data type as it is represented by an unsigned `int`.
-- we can not cast anything to `boolean` or vice-versa, as it is not a numeric primitive (the only non-numeric primitive).
+- we can not cast anything to `boolean` or vice-versa, as it is a non-numeric primitive (the only non-numeric primitive).
+###### Day 07
+- there are two types of type casting:
+  - **implicit type casting**: will be done automatically
+    * smaller to larger (widening conversion)
+    * integer to floating point
+  - **explicit type casting**: should be explicitly mentioned
+    * larger to smaller (narrowing conversion)
+    * `char` to `byte`/`short` and vice-versa requires explicit casting
+- casting to `char` is always explicit as all the other numeric types can have negative values whereas `char` can't take negative values.
+- if we are casting a value to a data type but the value is outside the range of the data type then JVM will discard all but the lower bytes of the value. For example,
+> ```java
+> byte b = (byte) 130;    // +130 (= 0b0000_0000_1000_0010)
+> System.out.println(b);  // -126 (= 0b1000_0010)
+> ``` 
+- floating point to integer will always truncate the value.
+> ```java
+> int pi = (int) 3.14f;   // pi = 3
+> char a = (char) 65.5;   // a = 'A'
+> ```
+- information loss due to implicit casting is also possible. Assigning a `int`/`long` to `float` or `long` to `double` could lead to loss of precision, usually the case when the numbers are large, as IEEE 754 fails to accurately represent large numbers.
+> ```java
+> int i = 1234567890;
+> float f = i;
+> System.out.println((int) f);
+> ```
+- for object references, bit depth is JVM specific i.e., in a JVM all object references will have the same size.
+- there are various ways to initialize an array:
+> ```java
+> int[] a = {1, 1, 1};    // can only be used in a declaration statement
+> int[] b = new int[]{1, 1, 1};
+> int[] c = new int[3];   // or `int c[] = new int[3]`
+> Arrays.fill(c, 1);
+>
+> int[][] d = {{1, 2}, {3, 4}, {5, 6}};
+> int[][] e = new int[][]{{1, 2}, {3, 4}, {5, 6}};
+> int[][] f = new int[3][2];
+>
+> int[] g = f[1];
+> ```
 </samp>
