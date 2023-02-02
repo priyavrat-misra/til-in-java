@@ -11,11 +11,14 @@
 <a href="#day-04">04</a> •
 <a href="#day-05">05</a> •
 <a href="#day-06">06</a> •
-<a href="#day-07">07</a>
+<a href="#day-07">07</a> •
+<a href="#day-08">08</a>
 </details>
 
 ###### Day 00
 - everything is always passed by value.
+  - in case of primitive argument, the value is the primitive.
+  - in case of object reference argument, the value is the memory address.
 - there can be more than one class defined in a file but only one of them can be public.
 - if there are multiple classes defined in a single file, then compiling the file will lead to those many `.class` files and they will have names of the corresponding classes.
 - the class name and the file name can be different unless it's a public class.
@@ -151,4 +154,27 @@
 >
 > int[] g = f[1];
 > ```
+###### Day 08
+- we cannot have a static method access non-static members because we have no way of knowing which non-static members we should be accessing i.e., static methods have no access to state (instance variables/methods). Note this holds for `main` method too as it is `static`.
+> ```java
+> public class InstanceInStatic {
+> 	int instanceVariable;
+> 	void instanceMethod() {}
+> 	static int staticVariable;
+> 	static void staticMethod() {}
+>
+> 	public static void staticMethod() {
+> 		System.out.println(instanceVariable);
+> 		instanceMethod();
+> 		// will result in a compilation error:
+> 		// "non-static variable/method can not be referenced from a static context"
+>
+> 		System.out.println(staticVariable);
+> 		staticMethod();
+> 		// possible
+> 	}
+> }
+> ```
+- we can access anything from an instance method, even `static` variables/methods.
+- method overloading doesn't work if we only change the return type as return type is not included in the method signature.
 </samp>
