@@ -9,9 +9,9 @@ public class Employee {
 	}
 
 	Employee(String name, int age) {
+		this();
 		this.name = name;
 		this.age = age;
-		count += 1;
 	}
 
 	public void setName(String name) {

@@ -12,7 +12,9 @@
 <a href="#day-05">05</a> •
 <a href="#day-06">06</a> •
 <a href="#day-07">07</a> •
-<a href="#day-08">08</a>
+<a href="#day-08">08</a> •
+<a href="#day-09">09</a> •
+<a href="#day-10">10</a>
 </details>
 
 ###### Day 00
@@ -163,7 +165,7 @@
 > 	static int staticVariable;
 > 	static void staticMethod() {}
 >
-> 	public static void staticMethod() {
+> 	public static void main(String[] args) {
 > 		System.out.println(instanceVariable);
 > 		instanceMethod();
 > 		// will result in a compilation error:
@@ -177,4 +179,31 @@
 > ```
 - we can access anything from an instance method, even `static` variables/methods.
 - method overloading doesn't work if we only change the return type as return type is not included in the method signature.
+###### Day 09
+- when there are multiple methods with the same name, the compiler tries to find a method having parameters with the exact same data type, but if it isn't present then it tries to find a method that has the next larger data type.
+> ```java
+> void example(int a) {}
+> void example(short a) {}
+> 
+> byte b = 1;
+> example(b);  // will call `example(short)`
+> ```
+- the process of compiler picking the method to be invoked and subsequently JVM using that information at runtime is called **method binding**.
+- we can pass zero or more parameters to a function by using *varargs* (variable-length arguments). It gives an illusion that the method is infinitely overloaded.
+- a method can't have more than one *varargs* parameter.
+- if the method has more than one parameter then the *varargs* parameter must be the last one.
+- during invocation the corresponding argument can be an array of any size or it can be a sequence of any number of comma separated arguments, in this case the compiler automatically converges them into an array.
+> ```java
+> void example(int... items) {}
+>
+> example(1, 2, 3);  // = example(new int[]{1, 2, 3});
+> ```
+- `System.out.printf` uses *varargs* under the hood.
+- we can use `main(String... args)` instead of `main(String[] args)`.
+- if we have a bunch of overloaded methods and one of them is a *varargs* method then during method invocation the *varargs* method will be the last one to be matched.
+- below is an invalid overload example:
+> ```java
+> void foo(boolean flag, int... items) {}
+> void foo(boolean flag, int[] items) {}
+> ```
 </samp>
