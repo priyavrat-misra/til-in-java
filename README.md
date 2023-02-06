@@ -206,4 +206,24 @@
 > void foo(boolean flag, int... items) {}
 > void foo(boolean flag, int[] items) {}
 > ```
+###### Day 10
+- the main purpose of the constructor is to initialize the object's state.
+- the default constructor is inserted only if the class definition does not include a constructor.
+- constructors doesn't return anything but they can have a `return`.
+- `this()` is used to call an overloaded constructor, must be first statement in a constructor.
+- we can't have more than one `this()` per constructor.
+- calling the same constructor using `this()` will lead to a recursive invocation error. Another way this is possible if one constructor calls another and the called constructor calls the callee.
+> ```java
+> class Example {
+>     Example() {
+>         this(1);
+>     }
+>     Example(int i) {
+>         this();
+>     }
+> }
+> ```
+- we can't have an instance variable inside `this()` invocation statement, it's because the variable is not yet initialized at that point in time, it'll result in `error: cannot reference variable before supertype constructor has been called`.
+- there is an implicit call to the `Object` superclass after which the control comes to the subclass where all the instance variables get initialized.
+- from **Java 11** onwards we can compile and execute a program by running a single command, `java Hello.java`. Compilation will happen in memory and so will not generate a `.class`.
 </samp>
