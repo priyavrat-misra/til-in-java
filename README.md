@@ -228,17 +228,14 @@
 - there is an implicit call to the `Object` superclass after which the control comes to the subclass where all the instance variables get initialized.
 - from **Java 11** onwards we can compile and execute a program by running a single command, `java Hello.java`. Compilation will happen in memory and so will not generate a `.class`.
 ###### Day 11
-- arithmetic operators can't be used on `boolean`, but bitwise operators are can be used.
+- arithmetic operators can't be used on `boolean`, but bitwise operators can be used.
 - it is not possible to use bitwise not (`~`) with `boolean`, if such a behavior is needed then we will have to use logical not (`!`).
 - bitwise operators can't be used on `float` and `double`.
 - in an arithmetic operation, operands smaller than `int` are promoted to `int`.
 > ```java
 > System.out.println('a' + 'b');  // = 195
 > ```
-- if operands belong to different types, then the smaller type is promoted to larger type. Note if `long` and `float` are operands, `long` is promoted to `float` even though `long` is 64 bits and `float` is 32 bits.
-> ```plaintext
-> order of promotion: int -> long -> float -> double
-> ```
+- if operands belong to different types, then the smaller type is promoted to larger type. Note if `long` and `float` are operands, `long` is promoted to `float` even though `long` is 64 bits and `float` is 32 bits. (*order of promotion: int -> long -> float -> double*)
 - in a logical `&&` and `||` statement, the evaluation of right operand/statement is conditionally dependent on the evaluation of left operand/statement.
 - `&&` can be used to prevent `NullPointerException`.
 > ```java
