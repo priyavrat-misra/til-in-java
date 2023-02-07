@@ -14,7 +14,8 @@
 <a href="#day-07">07</a> •
 <a href="#day-08">08</a> •
 <a href="#day-09">09</a> •
-<a href="#day-10">10</a>
+<a href="#day-10">10</a> •
+<a href="#day-11">11</a>
 </details>
 
 ###### Day 00
@@ -226,4 +227,23 @@
 - we can't have an instance variable inside `this()` invocation statement, it's because the variable is not yet initialized at that point in time, it'll result in `error: cannot reference variable before supertype constructor has been called`.
 - there is an implicit call to the `Object` superclass after which the control comes to the subclass where all the instance variables get initialized.
 - from **Java 11** onwards we can compile and execute a program by running a single command, `java Hello.java`. Compilation will happen in memory and so will not generate a `.class`.
+###### Day 11
+- arithmetic operators can't be used on `boolean`, but bitwise operators are can be used.
+- it is not possible to use bitwise not (`~`) with `boolean`, if such a behavior is needed then we will have to use logical not (`!`).
+- bitwise operators can't be used on `float` and `double`.
+- in an arithmetic operation, operands smaller than `int` are promoted to `int`.
+> ```java
+> System.out.println('a' + 'b');  // = 195
+> ```
+- if operands belong to different types, then the smaller type is promoted to larger type. Note if `long` and `float` are operands, `long` is promoted to `float` even though `long` is 64 bits and `float` is 32 bits.
+> ```plaintext
+> order of promotion: int -> long -> float -> double
+> ```
+- in a logical `&&` and `||` statement, the evaluation of right operand/statement is conditionally dependent on the evaluation of left operand/statement.
+- `&&` can be used to prevent `NullPointerException`.
+> ```java
+> if (obj != null && obj.id == 1024)
+>     ...
+> ```
+- according to the *Java Language Specification (JLS)*, `&`, `|` and `^` when applied on `boolean` operands are referred to as logical operators and not bitwise. In other words, the operators `&`, `|`, `^`, `~` are referred to as bitwise ONLY when they are applied on integer operands.
 </samp>
