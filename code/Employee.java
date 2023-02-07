@@ -1,5 +1,5 @@
 public class Employee {
-	int age;
+	int age, id;
 	String name;
 	static int count;
 	final String dept = "R&D";
@@ -12,6 +12,11 @@ public class Employee {
 		this();
 		this.name = name;
 		this.age = age;
+	}
+
+	Employee(String name, int age, int id) {
+		this(name, age);
+		this.id = id;
 	}
 
 	public void setName(String name) {
