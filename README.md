@@ -15,7 +15,8 @@
 <a href="#day-08">08</a> •
 <a href="#day-09">09</a> •
 <a href="#day-10">10</a> •
-<a href="#day-11">11</a>
+<a href="#day-11">11</a> •
+<a href="#day-12">12</a>
 </details>
 
 ###### Day 00
@@ -235,7 +236,7 @@
 > ```java
 > System.out.println('a' + 'b');  // = 195
 > ```
-- if operands belong to different types, then the smaller type is promoted to larger type. Note if `long` and `float` are operands, `long` is promoted to `float` even though `long` is 64 bits and `float` is 32 bits. (*order of promotion: int -> long -> float -> double*)
+- if operands belong to different types, then the smaller type is promoted to larger type (true for ternary operators as well). Note if `long` and `float` are operands, `long` is promoted to `float` even though `long` is 64 bits and `float` is 32 bits. (*order of promotion: int -> long -> float -> double*)
 - in a logical `&&` and `||` statement, the evaluation of right operand/statement is conditionally dependent on the evaluation of left operand/statement.
 - `&&` can be used to prevent `NullPointerException`.
 > ```java
@@ -243,4 +244,31 @@
 >     ...
 > ```
 - according to the *Java Language Specification (JLS)*, `&`, `|` and `^` when applied on `boolean` operands are referred to as logical operators and not bitwise. In other words, the operators `&`, `|`, `^`, `~` are referred to as bitwise ONLY when they are applied on integer operands.
+###### Day 12
+- `switch` can take an `enum` or an integer (`byte`, `short`, `char`, `int`) expression or a corresponding wrapper class. At runtime when the variable is evaluated, the primitive value will be unwrapped and will be compared with the `case` labels.
+- `switch` expression can also be a `String` (from *Java 7* onwards).
+- as we can have object references as `switch` expression, there is a possibility of it evaluating to `null` leading to a `NullPointerException`.
+- the value of the `case` label must be unique, non-null, within the range of the data type of the `switch` expression and should be known at compile time itself.
+> ```java
+> byte b = 2;
+> switch (b) {
+>     case 1:
+>         ...
+>         break;
+>     case 128:    // error
+>         ...
+>         break;
+> }
+> ```
+- a ternary expression can't be used as a standalone statement.
+- `for (;;) { ... }` is same as `while (true) { ... }`.
+- labelled `break` can be used to break out of a code block.
+> ```java
+> label: {
+>     if (true)
+>         break label;
+>     System.out.println("This statement will not get executed.");
+> }
+> ```
+- the label used with a `break` statement must be the label of the block in which the `break` statement appears.
 </samp>

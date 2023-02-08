@@ -11,8 +11,7 @@ public class Arrays {
 			A[i] = s.nextInt();
 
 		System.out.print("A\t\t:");
-		for (int i : A)
-			System.out.printf(" %d", i);
+		for (int i = 0; i < n; System.out.printf(" %d", A[i]), ++i);
 		System.out.println();
 
 		System.arraycopy(A, 0, A, 1, A.length - 1);
