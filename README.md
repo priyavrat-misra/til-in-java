@@ -271,4 +271,17 @@
 > }
 > ```
 - the label used with a `break` statement must be the label of the block in which the `break` statement appears.
+###### Day 13
+- it is possible to have a labelled `continue` which can only be associated with an enclosing loop statement unlike labelled `break` which can be associated with any block statement.
+- classes can directly reference other classes in the package by directly using the class names, but to access a class from a different package we have to either use `import` or by using the package followed by dot followed by the class name.
+> ```java
+> import java.util.ArrayList;
+> ...
+> ArrayList A = new ArrayList();
+> ```
+> or,
+> ```java
+> java.util.ArrayList A = new java.util.ArrayList();
+> ```
+- `java.lang` is imported by default.
 </samp>
