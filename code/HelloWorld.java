@@ -1,6 +1,7 @@
 import java.util.Scanner;
+import operation.arithmetic.Add;
 
-public class HelloWorld {
+class HelloWorld {
 	public static void main(String[] args) {
 		if (args.length == 1)
 			System.out.printf("Hello, %s!", args[0]);

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Arrays {
+class Arrays {
 	public static void main(String[] args) {
 		System.out.print("Enter an array starting with it's size: ");
 		Scanner s = new Scanner(System.in);

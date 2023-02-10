@@ -1,4 +1,4 @@
-public class Representations {
+class Representations {
 	public static void main(String[] args) {
 		int intHex = 0x0041;
 		int intBinary = 0b0100_0001;

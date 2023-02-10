@@ -1,4 +1,4 @@
-public class BitDepth {
+class BitDepth {
 	public static void main(String[] args) {
 		int[] A = new int[5];
 		Employee employee = new Employee();
