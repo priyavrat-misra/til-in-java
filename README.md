@@ -284,4 +284,41 @@
 > java.util.ArrayList A = new java.util.ArrayList();
 > ```
 - `java.lang` is imported by default.
+- strings are objects of the class `java.lang.String`.
+###### Day 14
+- if we want to access a `class` from another `package` then it should have the `public` access modifier, not required if we are accessing it from the same `package`.
+- there are four access modifiers:
+  - **private**: inside class
+  - **default**: inside package
+  - **protected**: inside package and any subclass
+  - **public**: inside and outside package
+- an object of a class can access `private` members of another object of the same class.
+> ```java
+> class Student {
+>     private int id;
+>     boolean equals(Student s) {
+>         return id == s.id;
+>     }
+> }
+> ```
+- a string literal is also a string object. Below are a few ways to initialize a `String` object.
+> ```java
+> String s0 = "Hello!";
+> 
+> String s1 = new String();      // empty string
+> String s2 = new String(s0);
+> 
+> char[] c = {'h', 'e', 'l', 'l', 'o'};
+> String s3 = new String(c);
+> ```
+- regular Java objects can't be assigned literals directly but assigning literals to wrapper class objects is possible.
+- all strings created using string literals are stored in a special place in heap memory called the string pool, whenever a new string is created like this, JVM will the check the pool first, if the literal is found the object will get it's reference. This doesn't happen with strings which are created using the `new` keyword.
+> ```java
+> String s1 = "abc";
+> String s2 = "abc";
+> String s3 = new String("abc");
+>
+> System.out.println(s1 == s2);  // true
+> System.out.println(s1 == s3);  // false
+> ```
 </samp>
