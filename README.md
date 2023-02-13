@@ -16,7 +16,10 @@
 <a href="#day-09">09</a> •
 <a href="#day-10">10</a> •
 <a href="#day-11">11</a> •
-<a href="#day-12">12</a>
+<a href="#day-12">12</a> •
+<a href="#day-13">13</a> •
+<a href="#day-14">14</a> •
+<a href="#day-15">15</a>
 </details>
 
 ###### Day 00
@@ -312,7 +315,8 @@
 > String s3 = new String(c);
 > ```
 - regular Java objects can't be assigned literals directly but assigning literals to wrapper class objects is possible.
-- all strings created using string literals are stored in a special place in heap memory called the string pool, whenever a new string is created like this, JVM will the check the pool first, if the literal is found the object will get it's reference. This doesn't happen with strings which are created using the `new` keyword.
+- the string pool is a memory area in the heap where the JVM stores all string literals. When we create a string literal, the JVM first checks the string pool to see if an identical string already exists. If it does, the JVM simply returns a reference to that string, rather than creating a new `String` object. This helps to conserve memory, as the JVM only needs to store one copy of each unique string value in memory.
+- when we create a string using the `new` keyword, a new `String` object is always created in the heap, separate from the string pool. The contents of this `String` object can be the same as a string in the pool, but it is still a separate object in memory, with its own memory address.
 > ```java
 > String s1 = "abc";
 > String s2 = "abc";
@@ -320,5 +324,33 @@
 >
 > System.out.println(s1 == s2);  // true
 > System.out.println(s1 == s3);  // false
+> ```
+###### Day 15
+-  the `String` objects created using the `new` keyword are separate objects in memory, they can still benefit from the memory-saving properties of the string pool. If we call the intern() method on a `String` object created using the `new` keyword, the JVM will add that string to the pool if it's not already there, and return a reference to the interned string.
+- the primary use of the `intern()` method is to conserve memory. When we intern a string, the JVM only needs to store one copy of that string in memory, and all references to that string will refer to the same object. This can be especially useful when working with a large number of strings that have the same value, as it can greatly reduce the amount of memory used by the program.
+> ```java
+> String s1 = "Hello";
+> String s2 = new String("Hello");
+> 
+> // Before interning, s1 and s2 refer to different objects in memory
+> System.out.println(s1 == s2);  // false
+> 
+> // Intern s2
+> s2 = s2.intern();
+> 
+> // After interning, s1 and s2 refer to the same object in memory
+> System.out.println(s1 == s2);  // true
+> ```
+> In this example, s1 is created using a string literal, so it is automatically interned. s2 is created using the String constructor, so it is not interned. When we call s2.intern(), the JVM checks the pool of all interned strings, finds a match for the value of s2, and returns a reference to that string. From this point forward, s1 and s2 refer to the same object in memory.
+- the term "intern" is a metaphor that refers to the practice of interning objects in a pool, much like a summer internship program. Just as an intern program pools together interns from different companies to work on a shared project, string interning pools together all strings with the same value so that they can be represented by a single instance in memory.
+- the result string literal concatenation is also stored in the string pool, however if one of them is a variable, the result won't go to the string pool as it is evaluated at the run time. But if we make the variable a `final` then it'll be evaluated at compile time itself and will end up at the string pool.
+> ```java
+> String s1 = "Hello";
+> String s2 = "lo";
+> final String s3 = "lo";
+>  
+> System.out.println(s1 == "Hel" + "lo");  // true
+> System.out.println(s1 == "Hel" + s2);    // false
+> System.out.println(s1 == "Hel" + s3);    // true
 > ```
 </samp>
