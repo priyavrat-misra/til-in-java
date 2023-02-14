@@ -20,7 +20,8 @@
 <a href="#day-13">13</a> •
 <a href="#day-14">14</a> •
 <a href="#day-15">15</a> •
-<a href="#day-16">16</a>
+<a href="#day-16">16</a> •
+<a href="#day-17">17</a>
 </details>
 
 ###### Day 00
@@ -327,7 +328,7 @@
 > System.out.println(s1 == s3);  // false
 > ```
 ###### Day 15
--  the `String` objects created using the `new` keyword are separate objects in memory, they can still benefit from the memory-saving properties of the string pool. If we call the intern() method on a `String` object created using the `new` keyword, the JVM will add that string to the pool if it's not already there, and return a reference to the interned string.
+-  the `String` objects created using the `new` keyword are separate objects in memory, they can still benefit from the memory-saving properties of the string pool. If we call the `intern()` method on a `String` object created using the `new` keyword, the JVM will add that string to the pool if it's not already there, and return a reference to the interned string.
 - the primary use of the `intern()` method is to conserve memory. When we intern a string, the JVM only needs to store one copy of that string in memory, and all references to that string will refer to the same object. This can be especially useful when working with a large number of strings that have the same value, as it can greatly reduce the amount of memory used by the program.
 > ```java
 > String s1 = "Hello";
@@ -385,4 +386,31 @@
 - we can reference static variables from instance initializers.
 - if there is a chain of overloaded constructor invocations, then instance initializer code will be copied only into the last invoked constructor. This ensures that instance initializer code is executed only once for every object that gets created. So, instance initializer code is copied into every constructor that does not have a `this()` invocation statement.
 - if there are multiple initializers (static or instance) then they will be executed in order.
+###### Day 17
+- `java.lang.StringBuilder` has four constructors:
+  - `StringBuilder()`: constructs a string builder with no characters in it and an initial capacity of 16 characters
+  - `StringBuilder(CharSequence seq)`: constructs a string builder that contains the same characters as the specified `CharSequence`
+  - `StringBuilder(int capacity)`: constructs a string builder with no characters in it and an initial capacity specified by the capacity argument
+  - `StringBuilder(String str)`: constructs a string builder initialized to the contents of the specified string
+- the `capacity()` method of `StringBuilder` class returns the current capacity of the builder. If the number of character increases from its current capacity, then a new internal array is allocated with a size that is twice the old size plus 2 and the data is copied over.
+> ```java
+> StringBuilder s = new StringBuilder();
+> System.out.println(s.capacity());    // 16
+> s.append("Hello, World!");
+> System.out.println(s.capacity());    // 16
+> s.append("!!!!");
+> System.out.println(s.capacity());    // 34
+> ```
+- the `ensureCapacity()` method ensures that the capacity is at least equal to the specified minimum. If the current capacity is less than the argument, then a new internal array is allocated with greater capacity. The new capacity is the larger of the argument or twice the old capacity, plus 2.
+> ```java
+> StringBuilder s = new StringBuilder();
+> System.out.println(s.capacity());    // 16
+> s.ensureCapacity(10);
+> System.out.println(s.capacity());    // 16
+> s.ensureCapacity(17);
+> System.out.println(s.capacity());    // 34
+> s.ensureCapacity(71);
+> System.out.println(s.capacity());    // 71
+> ```
+- the `trimToSize()` method attempts to reduce storage used for the character sequence. It creates a new internal character array with the current length of the buffer and copies the content of the old array to the new array.
 </samp>
