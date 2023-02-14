@@ -1,6 +1,6 @@
 public class Employee {
-	int age, id;
-	String name;
+	private int age, id;
+	private String name;
 	static int count;
 	final String dept = "R&D";
 

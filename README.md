@@ -19,7 +19,8 @@
 <a href="#day-12">12</a> •
 <a href="#day-13">13</a> •
 <a href="#day-14">14</a> •
-<a href="#day-15">15</a>
+<a href="#day-15">15</a> •
+<a href="#day-16">16</a>
 </details>
 
 ###### Day 00
@@ -286,7 +287,7 @@
 > ```java
 > java.util.ArrayList A = new java.util.ArrayList();
 > ```
-- `java.lang` is imported by default.
+- `java.lang.*` is imported by default.
 - strings are objects of the class `java.lang.String`.
 ###### Day 14
 - if we want to access a `class` from another `package` then it should have the `public` access modifier, not required if we are accessing it from the same `package`.
@@ -340,8 +341,15 @@
 > 
 > // After interning, s1 and s2 refer to the same object in memory
 > System.out.println(s1 == s2);  // true
+> 
+> /*
+> In this example, s1 is created using a string literal, so it is automatically interned.
+> s2 is created using the String constructor, so it is not interned.
+> When we call s2.intern(), the JVM checks the pool of all interned strings,
+> finds a match for the value of s2, and returns a reference to that string.
+> From this point forward, s1 and s2 refer to the same object in memory.
+> */
 > ```
-> In this example, s1 is created using a string literal, so it is automatically interned. s2 is created using the String constructor, so it is not interned. When we call s2.intern(), the JVM checks the pool of all interned strings, finds a match for the value of s2, and returns a reference to that string. From this point forward, s1 and s2 refer to the same object in memory.
 - the term "intern" is a metaphor that refers to the practice of interning objects in a pool, much like a summer internship program. Just as an intern program pools together interns from different companies to work on a shared project, string interning pools together all strings with the same value so that they can be represented by a single instance in memory.
 - the result string literal concatenation is also stored in the string pool, however if one of them is a variable, the result won't go to the string pool as it is evaluated at the run time. But if we make the variable a `final` then it'll be evaluated at compile time itself and will end up at the string pool.
 > ```java
@@ -353,4 +361,28 @@
 > System.out.println(s1 == "Hel" + s2);    // false
 > System.out.println(s1 == "Hel" + s3);    // true
 > ```
+###### Day 16
+- classes can only have `public` or `default` access specifiers.
+- all the methods in `java.lang.Math` are static.
+- the `Math` class is non-instantiable, which means we can't create it's objects. This can be achieved by making the default constructor `private`.
+- there are two types of initializers, **static initializer** and **instance initializer**.
+- static initializers are used to initialize the static variables. A static initializer is declared using the `static` keyword, and it is executed only once when the class is loaded.
+> ```java
+> class Example {
+>     static final double i;
+>     static HashMap<Integer, String> h = new HashMap<>();
+>     static {
+>         i = Math.random();
+>         h.put(1, "one");
+>         h.put(2, "two");
+>     }
+> }
+> ```
+- Static initializers are useful when we need to initialize `static` variables with a value that can't be computed at compile time.
+- we can't reference instance variables from static intializers.
+- instance initializers are used to initialize instance variables. The syntax is similar to static initializer but without the `static` keyword.
+- a constructor can also be use initialize instance variables but instance initializers are helpful if we want to share a block of code between multiple constructors i.e., Java compiler copies initializer blocks into the beginning of every constructor.
+- we can reference static variables from instance initializers.
+- if there is a chain of overloaded constructor invocations, then instance initializer code will be copied only into the last invoked constructor. This ensures that instance initializer code is executed only once for every object that gets created. So, instance initializer code is copied into every constructor that does not have a `this()` invocation statement.
+- if there are multiple initializers (static or instance) then they will be executed in order.
 </samp>
