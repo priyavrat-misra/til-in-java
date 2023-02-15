@@ -21,7 +21,8 @@
 <a href="#day-14">14</a> •
 <a href="#day-15">15</a> •
 <a href="#day-16">16</a> •
-<a href="#day-17">17</a>
+<a href="#day-17">17</a> •
+<a href="#day-18">18</a>
 </details>
 
 ###### Day 00
@@ -379,7 +380,7 @@
 >     }
 > }
 > ```
-- Static initializers are useful when we need to initialize `static` variables with a value that can't be computed at compile time.
+- static initializers are useful when we need to initialize `static` variables with a value that can't be computed at compile time.
 - we can't reference instance variables from static intializers.
 - instance initializers are used to initialize instance variables. The syntax is similar to static initializer but without the `static` keyword.
 - a constructor can also be use initialize instance variables but instance initializers are helpful if we want to share a block of code between multiple constructors i.e., Java compiler copies initializer blocks into the beginning of every constructor.
@@ -413,4 +414,14 @@
 > System.out.println(s.capacity());    // 71
 > ```
 - the `trimToSize()` method attempts to reduce storage used for the character sequence. It creates a new internal character array with the current length of the buffer and copies the content of the old array to the new array.
+###### Day 18
+- the `delete` method in `StringBuilder` when called copies the remaining characters in the buffer to the left to fill in the gap created by the deleted characters. This operation can be slow if the buffer is large and the number of characters to delete is large.
+- when we make a reference variable `final` then the reference is constant, not the object content.
+- `final` variables can't get default values.
+- a `final` instance variable once initialized can not be changed for the life of the object. They must be initialized during declaration or in constructor(s) or inside instance initializer.
+- a `final` static variable is constant irrespective of the number of instances. They must be initialized during declaration or inside the static initializer. (E.g., `public static final int MAX_VALUE = 0x7fffffff;`).
+- constant variables are `final` variables but for a `final` variable to be qualified as a constant variable there are few restrictions:
+  - type of variable should be either a primitive or a `String`.
+  - the variable should be initialized in the declaration statement itself and the right side should be a compile time constant expression.
+- a _static factory method_ is a public static method in a class that returns an instance of that class. These can be used to create objects instead of using a constructor.
 </samp>
