@@ -19,6 +19,10 @@ public class Employee {
 		this.id = id;
 	}
 
+	public static Employee create(String name, int age, int id) {
+		return new Employee(name, age, id);
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -47,5 +51,8 @@ public class Employee {
 		System.out.printf("%s's age: %d\n", employee[0].getName(), employee[0].getAge());
 		employee[0].setAge(25);
 		System.out.printf("%s's new age: %d\n", employee[0].getName(), employee[0].getAge());
+
+		Employee manager = Employee.create("mno", 30, 1111);
+		System.out.printf("Employee name\t: %s\nEmployee age\t: %d\n", manager.getName(), manager.getAge());
 	}
 }

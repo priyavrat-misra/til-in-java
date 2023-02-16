@@ -22,7 +22,9 @@
 <a href="#day-15">15</a> •
 <a href="#day-16">16</a> •
 <a href="#day-17">17</a> •
-<a href="#day-18">18</a>
+<a href="#day-18">18</a> •
+<a href="#day-19">19</a> •
+<a href="#day-20">20</a>
 </details>
 
 ###### Day 00
@@ -424,4 +426,69 @@
   - type of variable should be either a primitive or a `String`.
   - the variable should be initialized in the declaration statement itself and the right side should be a compile time constant expression.
 - a _static factory method_ is a public static method in a class that returns an instance of that class. These can be used to create objects instead of using a constructor.
+> ```java
+> Integer boxedI = Integer.valueOf(1);
+> int i = boxedI.intValue();
+> ```
+###### Day 19
+- one of the advantages of using _static factory methods_ is that they allow for the caching and reusing objects, which can help to improve performance and reduce memory usage. This can be particularly useful when working with immutable objects, since they can be safely shared between different parts of a program.
+- below is a static factory method from creating `Integer` objects, which checks if the value passed in is within -128 (`IntegerCache.low`) to 127 (`IntegerCache.high`) first, and if it is, it returns a cached instance of an `Integer` object instead of creating a new one. This technique is used to improve performance and reduce memory usage.
+> ```java
+> public static Integer valueOf(int i) {
+>     if (i >= IntegerCache.low && i <= IntegerCache.high)
+>         return IntegerCache.cache[i + (-IntegerCache.low)];
+>     return new Integer(i);
+> }
+> ```
+- the `IntegerCache` is initialized at runtime by the JVM and a total of 256 `Integer` objects are cached. In addition to these 256 objects, JVM also caches other commonly used boxed primitive objects. These include:
+  - `Boolean`: `Boolean.TRUE` and `Boolean.FALSE`
+  - `Byte`: All possible `Byte` values
+  - `Character`: All unicode characters from `'\u0000'` to `'\u007f'`
+  - `Short`: All possible `Short` values
+  - `Long`: All `Long` values between `-128` and `127`
+  - `Float`: `Float.NaN`, `Float.POSITIVE_INFINITY`, and `Float.NEGATIVE_INFINITY`.
+  - `Double`: `Double.NaN`, `Double.POSITIVE_INFINITY`, and `Double.NEGATIVE_INFINITY`.
+> ```java
+> Integer a = Integer.valueOf(10);  // returns a cached Integer object
+> Integer b = Integer.valueOf(10);  // returns the same cached Integer object
+> Integer c = new Integer(10);      // creates a new Integer object
+> 
+> System.out.println(a == b);       // true
+> System.out.println(a == c);       // false
+> ```
+###### Day 20
+- prior to _Java 5_ one had to manually create a boxed primitive by invoking either it's constructor or by `valueOf` method. But in _Java 5_ a feature called auto-boxing was introduced, meaning the compiler can automatically box a primitive if needed.
+> ```java
+> // auto-boxing
+> Integer i = 5;  // Integer i = new Integer(5);
+> // auto-unboxing
+> int j = i;      // int j = i.intValue();
+> ```
+- auto-boxing can also be seen in method invocation
+> ```java
+> auto-boxing
+> void go(Integer boxed) {}
+> go(25);               // compiler will wrap it before invocation
+> ```
+> ```java
+> auto-unboxing
+> void go(int i) {}
+> go(new Integer(25));  // compiler will unwrap it before invocation
+> ```
+> ```java
+> ArrayList list = new ArrayList();
+> list.add(5);    // list.add(new Integer(5));
+> ```
+- it is also possible to directly perform arithmetic operations on boxed primitives.
+> ```java
+> Integer i = 1;
+> ++i;
+> int j = 3 * i;
+> ```
+- autoboxing is not supported with generics.
+> ```java
+> ArrayList<Double> al = new ArrayList<>();
+> al.add(2.2);  // error
+> ```
+- `<`, `>`, `>=` and `<=` on boxed primitives will lead to auto-unboxing but in case of `==` and `!=` the address will be compared.
 </samp>
