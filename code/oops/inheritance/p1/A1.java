@@ -1,4 +1,4 @@
-package example.oops.p1;
+package oops.inheritance.p1;
 
 public class A1 {
 	static private int privateMember = 1;

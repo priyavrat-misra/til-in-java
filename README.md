@@ -24,7 +24,8 @@
 <a href="#day-17">17</a> •
 <a href="#day-18">18</a> •
 <a href="#day-19">19</a> •
-<a href="#day-20">20</a>
+<a href="#day-20">20</a> •
+<a href="#day-21">21</a>
 </details>
 
 ###### Day 00
@@ -298,7 +299,7 @@
 - there are four access modifiers:
   - **private**: inside class
   - **default**: inside package
-  - **protected**: inside package and any subclass
+  - **protected**: inside package and any subclass (need not be in the same package)
   - **public**: inside and outside package
 - an object of a class can access `private` members of another object of the same class.
 > ```java
@@ -490,5 +491,19 @@
 > ArrayList<Double> al = new ArrayList<>();
 > al.add(2.2);  // error
 > ```
-- `<`, `>`, `>=` and `<=` on boxed primitives will lead to auto-unboxing but in case of `==` and `!=` the address will be compared.
+- `<`, `>`, `>=` and `<=` on boxed primitives will lead to auto-unboxing but in case of `==` and `!=` the addresses will be compared.
+###### Day 21
+- a class can extend from only one class.
+- _is-a_ test is a fundamental test that can be used to check inheritance relationship. If it is failing then inheritance relation should not be applied.
+- with polymorphism, a supertype can be assigned any of it's subtypes. It means that the type of object reference and the actual object referenced can be different, the type of object reference has to be a supertype of the actual object that is being referenced.
+> ```java
+> Employee employee = new Manager();
+> /*reference type*/  /*object type*/
+> ```
+- the compiler uses reference type to decide on whether a method can be invoked on an object reference or not.
+>```java
+> User user = new Editor();
+> user.approveReview();    // compiler error, as User class doesn't have this method
+>```
+- at runtime, JVM uses the object type to decide which method is invoked, where JVM invokes the most specific version in the inheritance tree, starting from the object type and moving upwards in the tree.
 </samp>

@@ -1,6 +1,6 @@
-package example.oops.p1;
+package oops.inheritance.p1;
 
-import example.oops.p2.C2;
+import oops.inheritance.p2.C2;
 
 public class B1 {
 	public static void main(String[] args) {
