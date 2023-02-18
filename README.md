@@ -25,7 +25,8 @@
 <a href="#day-18">18</a> •
 <a href="#day-19">19</a> •
 <a href="#day-20">20</a> •
-<a href="#day-21">21</a>
+<a href="#day-21">21</a> •
+<a href="#day-22">22</a>
 </details>
 
 ###### Day 00
@@ -501,9 +502,33 @@
 > /*reference type*/  /*object type*/
 > ```
 - the compiler uses reference type to decide on whether a method can be invoked on an object reference or not.
->```java
+> ```java
 > User user = new Editor();
-> user.approveReview();    // compiler error, as User class doesn't have this method
->```
+> user.approveReview();    // compiler error, as User doesn't have this method
+> ```
 - at runtime, JVM uses the object type to decide which method is invoked, where JVM invokes the most specific version in the inheritance tree, starting from the object type and moving upwards in the tree.
+###### Day 22
+- once implicit casting on an inherited class is done, we can only invoke those subclass methods which are also defined in the super-class but sub-class specific methods become invalid. To address this we need to use explicit casting.
+> ```java
+> Staff s = new Editor();
+> s.approveReview();             // invalid
+> ((Editor) s).approveReview();  // valid
+> ```
+- `instanceof` operator is used to check whether an object reference is indeed an instance of the class. Note that it is the object type, but not the reference type that matters. Also the object referenced by the variable can be a subclass of the class specified on the right side, it doesn't have to be a direct instance.
+> ```java
+> User u = new User();
+> Staff s = new Staff();
+> User us = new Staff();
+> 
+> System.out.println(u instanceof User);    // true
+> System.out.println(u instanceof Staff);   // false
+> System.out.println(s instanceof Staff);   // true
+> System.out.println(s instanceof User);    // true
+> System.out.println(us instanceof User);   // true
+> System.out.println(us instanceof Staff);  // true
+> ```
+- there are two method overriding rules:
+  - same parameters and compitable return types (must be same or subclass type, applicable only to non-primitive return types)
+  - can't be less accessible (access level must be same or friendlier, e.g., we can't override a `public` method and make it `private`)
+- the `super` keyword is related to objects that's why it can never be used inside a `static` method.
 </samp>
