@@ -26,7 +26,8 @@
 <a href="#day-19">19</a> •
 <a href="#day-20">20</a> •
 <a href="#day-21">21</a> •
-<a href="#day-22">22</a>
+<a href="#day-22">22</a> •
+<a href="#day-23">23</a>
 </details>
 
 ###### Day 00
@@ -531,4 +532,13 @@
   - same parameters and compitable return types (must be same or subclass type, applicable only to non-primitive return types)
   - can't be less accessible (access level must be same or friendlier, e.g., we can't override a `public` method and make it `private`)
 - the `super` keyword is related to objects that's why it can never be used inside a `static` method.
+###### Day 23
+- **method binding** is the process of connecting a method call to the actual implementation of the method. There are two types of method binding:
+  - **static binding**: it occurs at compile time, where the compiler resolves the method call based on the declared type of the object.
+  - **dynamic binding**: it occurs at runtime, where the actual implementation of the method is determined based on the runtime type of the object.
+- static methods are statically bound at compile time based on the declared type of the object however, instance methods are dynamically bound at runtime based on the actual type of the object. 
+- the `@Override` annotation is used to indicate that a method in subclass intends to override a method of it's superclass. It is a way for the compiler to check that the method signature in the subclass is correct and that the method actually overrides a method in the superclass. If the method signature is incorrect or the method does not override a method in the superclass, the compiler will issue an error.
+- a `final` method can not be overriden.
+- both static as well as instance variables can not be overriden. Which means instance variables are also early bounded. Note that instance methods can be overriden but not instance variables.
+- static methods can not be overriden since they are bonded at compile time and method overriding relies on dynamic binding at runtime. If static methods are redefined by a derived class, then it is not Method Overriding but Method Hiding.
 </samp>
