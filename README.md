@@ -539,6 +539,6 @@
 - static methods are statically bound at compile time based on the declared type of the object however, instance methods are dynamically bound at runtime based on the actual type of the object. 
 - the `@Override` annotation is used to indicate that a method in subclass intends to override a method of it's superclass. It is a way for the compiler to check that the method signature in the subclass is correct and that the method actually overrides a method in the superclass. If the method signature is incorrect or the method does not override a method in the superclass, the compiler will issue an error.
 - a `final` method can not be overriden.
-- both static as well as instance variables can not be overriden. Which means instance variables are also early bounded. Note that instance methods can be overriden but not instance variables.
-- static methods can not be overriden since they are bonded at compile time and method overriding relies on dynamic binding at runtime. If static methods are redefined by a derived class, then it is not Method Overriding but Method Hiding.
+- both static as well as instance variables can not be overridden. Note that instance methods can be overridden but not instance variables.
+- static methods can not be overridden since they are bounded at compile time and method overriding relies on dynamic binding at runtime. If static methods are redefined by a derived class, then it is not Method Overriding but Method Hiding.
 </samp>
