@@ -27,7 +27,8 @@
 <a href="#day-20">20</a> •
 <a href="#day-21">21</a> •
 <a href="#day-22">22</a> •
-<a href="#day-23">23</a>
+<a href="#day-23">23</a> •
+<a href="#day-24">24</a>
 </details>
 
 ###### Day 00
@@ -541,4 +542,27 @@
 - a `final` method can not be overriden.
 - both static as well as instance variables can not be overridden. Note that instance methods can be overridden but not instance variables.
 - static methods can not be overridden since they are bounded at compile time and method overriding relies on dynamic binding at runtime. If static methods are redefined by a derived class, then it is not Method Overriding but Method Hiding.
+###### Day 24
+- if we pass `this` to `System.out.println()` then it automatically invokes `toString()`. If the `toString()` method is overridden then it'll get invoked.
+- inherited methods might depend on superclass state that's why superclasses must be initialized first. This means that all the superclass constructors should run before the subclass constructor. This is acheived by _constructor chaining_, where a subclass implicitly calls the superclass constructor and this process goes on until `Object` class's constructor is invoked.
+- the `super()` method can be used to explicitly invoke a superclass's constructor, however it must be the first statement.
+- a constructor can have either `this()` or `super()` but not both.
+- with overloaded constructors, the last one in the heirarchy is responsible for invoking a superclass constructor.
+- if we don't provide an invocation statement then the compiler inserts a `super()` implicitly, it will be added in a constructor that doesn't invoke a overloaded constructor.
+- if for any reason a superclass constructor can not be invoked then it'll lead to a compiler error.
+> ```java
+> class User {
+>     // User() {}             // fix 1
+>     User(int id) {}
+> }
+> class Staff extends User {
+>     Staff(int id) {
+>         // super(id);        // fix 2
+>     }
+> }
+> ```
+- there are two ways to prevent inheritance
+  1. by making the class `final` (not extendible but instantiable e.g., `String` class)
+  2. by making the constructor `private` (neither extendible nor instantiable e.g., `Math` class)
+- the reason why making the constructor `private` prevents inheritance is because the `private` access modifier makes the constructor private to the class and so it can not be invoked from the subclass which means constructor chaining is not possible and hence the subclass can not be created.
 </samp>

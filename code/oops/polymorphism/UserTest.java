@@ -26,11 +26,15 @@ class UserTest {
 		UserTest ut = new UserTest();
 		ut.printUserType(user);  // implicit casting
 		ut.printUserType(staff);
+		((Staff) staff).printUserType();
 		ut.printUserType(editor);
 
 		// editor.approveReview();
 		editor.postAReview();
 		editor.saveWebLink();
+		editor.staticMethod();
+		((Editor) editor).staticMethod();
+
 
 		ut.approveReview(new Staff());
 		ut.approveReview(new Editor());
