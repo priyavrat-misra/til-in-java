@@ -28,7 +28,8 @@
 <a href="#day-21">21</a> •
 <a href="#day-22">22</a> •
 <a href="#day-23">23</a> •
-<a href="#day-24">24</a>
+<a href="#day-24">24</a> •
+<a href="#day-25">25</a>
 </details>
 
 ###### Day 00
@@ -370,7 +371,7 @@
 > System.out.println(s1 == "Hel" + s3);    // true
 > ```
 ###### Day 16
-- classes can only have `public` or `default` access specifiers.
+- classes and interfaces can only have `public` or `default` access specifiers.
 - all the methods in `java.lang.Math` are static.
 - the `Math` class is non-instantiable, which means we can't create it's objects. This can be achieved by making the default constructor `private`.
 - there are two types of initializers, **static initializer** and **instance initializer**.
@@ -496,7 +497,7 @@
 > ```
 - `<`, `>`, `>=` and `<=` on boxed primitives will lead to auto-unboxing but in case of `==` and `!=` the addresses will be compared.
 ###### Day 21
-- a class can extend from only one class.
+- a class can extend from only one class i.e., Java does not support Multiple Inheritance.
 - _is-a_ test is a fundamental test that can be used to check inheritance relationship. If it is failing then inheritance relation should not be applied.
 - with polymorphism, a supertype can be assigned any of it's subtypes. It means that the type of object reference and the actual object referenced can be different, the type of object reference has to be a supertype of the actual object that is being referenced.
 > ```java
@@ -561,8 +562,57 @@
 >     }
 > }
 > ```
-- there are two ways to prevent inheritance
+- there are two ways to prevent inheritance:
   1. by making the class `final` (not extendible but instantiable e.g., `String` class)
   2. by making the constructor `private` (neither extendible nor instantiable e.g., `Math` class)
 - the reason why making the constructor `private` prevents inheritance is because the `private` access modifier makes the constructor private to the class and so it can not be invoked from the subclass which means constructor chaining is not possible and hence the subclass can not be created.
+###### Day 25
+- `abstract` classes are non-instantiable, but defines common protocol for subclasses.
+> ```java
+> abstract class Syntax {
+>     ...
+> }
+> ```
+- like an abstract class an abstract method also involves inserting the keyword `abstract` in the method declaration.
+  - it doesn't have a body.
+  - must be overridden (which also means that abstract methods can not be static)
+- `abstract` method → `abstract` class
+- `abstract` class → any method
+- a subclass can also be `abstract` and it need not override `abstract` methods.
+- if a subclass is non abstract then it must override all of the unimplemented abstract methods.
+- an abstract class can also have a constructor. However, this constructor is only accessible from a subclass constructor as it is not possible to instantiate an abstract class.
+- if we do not include a constructor in an abstract class (which is the typical case), then compiler inserts a no-arg constructor implicitly just like in the case of a normal class. And this implicitly created constructor will also be invoked from the subclass as part of constructor chaining process and this constructor will in turn invoke the superclass constructor, i.e., includes a `super()`. So, nothing is different from the regular superclass & subclass scenario.
+- in general, the term _"type"_ is often used to refer a either a `class` or an `interface`.
+- prior to Java 8, `interface` could only have public abstract methods but since Java 8 onwards an `interface` can have concrete methods.
+- interfaces will not have any state i.e., they do not have instance variables or constructors which makes them non-instantiable.
+- we can implement multiple interfaces but can only inherit one (as Java doesn't support Multiple Inheritance). Moreover an interface can have multiple subclasses from multiple packages.
+- an `interface` is implicitly abstract. 
+> ```java
+> public interface InterfaceName {  // or `public abstract interface InterfaceName`
+>     /**
+>      * static final fields
+>      * abstract methods
+>      * methods
+>      * static methods
+>      * nested classes or interfaces
+>      */
+> 
+>     // Note:
+>     // 1. all the above members are implicitly `public` and can't be `private` or `protected`
+>     // (from Java 9 onwards we can have `private` concrete methods)
+>     // 2. in case of abstract methods, `abstract` is implicit (no need to use the `abstract` keyword)
+>     // 3. variables are `public`, `static` and `final` by default
+>     // 4. if `public` is omitted from the interface, then all members will become default rather than `public`
+> }
+> ```
+- interfaces are imported just like classes.
+- a class implementing an interface is a subtype of that interface due to which the following is possible:
+> ```java
+> Interface obj = new Class();
+> Class obj = new Class();
+> ```
+- an interface can only be a reference type and it can never be an object type.
+> ```java
+> Interface obj = new Interface();  // not possible
+> ```
 </samp>
