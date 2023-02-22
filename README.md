@@ -4,35 +4,35 @@
 
 <details>
 <summary>Jump to Day</summary>
-<a href="#day-00">00</a> •
-<a href="#day-01">01</a> •
-<a href="#day-02">02</a> •
-<a href="#day-03">03</a> •
-<a href="#day-04">04</a> •
-<a href="#day-05">05</a> •
-<a href="#day-06">06</a> •
-<a href="#day-07">07</a> •
-<a href="#day-08">08</a> •
-<a href="#day-09">09</a> •
-<a href="#day-10">10</a> •
-<a href="#day-11">11</a> •
-<a href="#day-12">12</a> •
-<a href="#day-13">13</a> •
-<a href="#day-14">14</a> •
-<a href="#day-15">15</a> •
-<a href="#day-16">16</a> •
-<a href="#day-17">17</a> •
-<a href="#day-18">18</a> •
-<a href="#day-19">19</a> •
-<a href="#day-20">20</a> •
-<a href="#day-21">21</a> •
-<a href="#day-22">22</a> •
-<a href="#day-23">23</a> •
-<a href="#day-24">24</a> •
-<a href="#day-25">25</a>
+<a href="#day-00-">00</a> •
+<a href="#day-01-">01</a> •
+<a href="#day-02-">02</a> •
+<a href="#day-03-">03</a> •
+<a href="#day-04-">04</a> •
+<a href="#day-05-">05</a> •
+<a href="#day-06-">06</a> •
+<a href="#day-07-">07</a> •
+<a href="#day-08-">08</a> •
+<a href="#day-09-">09</a> •
+<a href="#day-10-">10</a> •
+<a href="#day-11-">11</a> •
+<a href="#day-12-">12</a> •
+<a href="#day-13-">13</a> •
+<a href="#day-14-">14</a> •
+<a href="#day-15-">15</a> •
+<a href="#day-16-">16</a> •
+<a href="#day-17-">17</a> •
+<a href="#day-18-">18</a> •
+<a href="#day-19-">19</a> •
+<a href="#day-20-">20</a> •
+<a href="#day-21-">21</a> •
+<a href="#day-22-">22</a> •
+<a href="#day-23-">23</a> •
+<a href="#day-24-">24</a> •
+<a href="#day-25-">25</a>
 </details>
 
-###### Day 00
+###### Day 00 [↑](#today-i-learned-in-java- "Back to Top")
 - everything is always passed by value.
   - in case of primitive argument, the value is the primitive.
   - in case of object reference argument, the value is the memory address.
@@ -43,7 +43,7 @@
 - `>>>` is unsigned right shift operator.
 - multiple `.class` files can be archived into one `.jar` file by running `jar cvf archive.jar c1.class c2.class`.
 - `javap` can be used to view the generated Java bytecode, `javap -c HelloWorld.class`.
-###### Day 01
+###### Day 01 [↑](#today-i-learned-in-java- "Back to Top")
 - if there is a class which uses other classes, then compiling that class will lead to compilation of all the classes it uses, as the compiler can't really know whether it is valid Java code without doing a depth first compilation first.
 - compiling the class that contains `main()` will lead to compilation of the whole project, as it is the entry point.
 - the compiled `.class` files need not be present in the current directory for a program to run, provided the classpath(s) is/are mentioned by using the `-cp` flag. By default, the classpath is set to current directory only.
@@ -51,7 +51,7 @@
 - the `-cp` flag can also be used during compile time to let compiler know where the classes are present.
 - a `.jar` file can also be a classpath i.e., the `-cp` flag may contain both directories as well as files.
 - multiple classpaths can be separated by using <kbd>:</kbd> in Linux and <kbd>;</kbd> in Windows.
-###### Day 02
+###### Day 02 [↑](#today-i-learned-in-java- "Back to Top")
 - once the type of a variable is set it can not be changed later as Java is a _statically typed language_.
 - if the variable type is a class, then the variable will be an object reference.
 - there are 3 types of variables in Java:
@@ -59,7 +59,7 @@
   - **instance variables**: declared in a class but outside any methods, constructors or blocks.
   - **class/static variables**: declared with the `static` keyword in a class but outside any methods, constructors or blocks. 
 - _local variables_ must be initialized with a value before they are used.
-###### Day 03
+###### Day 03 [↑](#today-i-learned-in-java- "Back to Top")
 - `String` objects are immutable i.e., we cannot change the object itself, but we can change the reference to the object.
 - `StringBuilder` and `StringBuffer` objects are mutable i.e, they can be used for dynamic string manipulation.
 - in an expression if either operand in `+` is a `String` object, then Java converts the other operand to a `String` and creates a new `String` object by concatenating both operands.
@@ -80,7 +80,7 @@
 > sb.append(s1).append(" ").append(s2);
 > String s3 = sb.toString();
 > ```
-###### Day 04
+###### Day 04 [↑](#today-i-learned-in-java- "Back to Top")
 - array and class variables are pointers/object references.
 - a default initial value is assigned to each element of a newly allocated array if no initial value is specified. For numerical types it is `0`, for boolean it is `false` and for any pointer/object reference it is `null`.
 - 2D arrays need not be rectangular, each row can be of different length. Helpful for symmetric matrices.
@@ -104,7 +104,7 @@
 > int[] A = {0, 1, 2, 3, 4};
 > System.arraycopy(A, 0, A, 1, 4);
 > ```
-###### Day 05
+###### Day 05 [↑](#today-i-learned-in-java- "Back to Top")
 - there are no `byte` or `short` literals but only `int` and `long` literals. <kbd>_</kbd> can be used to improve readability of the literals. We can make a literal `long` by appending  <kbd>L</kbd> or <kbd>l</kbd>.
 - a `long` literal can't be assigned to an `byte`, `short` or `int` variable. The compiler will throw an "possible lossy conversion" error. Similarly a `double` literal can't be assigned to an `float` variable. 
 - every primitive type has an associated boxed primitive, which have a lot of predefined functions and variables to make things easy.
@@ -113,7 +113,7 @@
 > int maxValue = Integer.MAX_VALUE;
 > ```
 - some numbers like 0.1, 0.2 etc. can not be accurately represented with IEEE 754 standard, as numbers represented in this format are a whole number times a power of two; rational numbers (such as 0.1, which is 1/10) whose denominator is not a power of two cannot be exactly represented.
-###### Day 06
+###### Day 06 [↑](#today-i-learned-in-java- "Back to Top")
 - instance and class/static variables are assigned a default value if nothing is assigned, for numerical types it is `0`, for boolean it is `false` and for any pointer/object reference it is `null`.
 - assignment statements aren't possible in the class level but if they are a part of a declaration statement then it is possible.
 > ```java
@@ -132,7 +132,7 @@
 - expression and control flow statements aren't possible in the class level.
 - only numeric to numeric casting is possible. Note that `char` also falls under numeric data type as it is represented by an unsigned `int`.
 - we can not cast anything to `boolean` or vice-versa, as it is a non-numeric primitive (the only non-numeric primitive).
-###### Day 07
+###### Day 07 [↑](#today-i-learned-in-java- "Back to Top")
 - there are two types of type casting:
   - **implicit type casting**: will be done automatically
     * smaller to larger (widening conversion)
@@ -171,7 +171,7 @@
 >
 > int[] g = f[1];
 > ```
-###### Day 08
+###### Day 08 [↑](#today-i-learned-in-java- "Back to Top")
 - we cannot have a static method access non-static members because we have no way of knowing which non-static members we should be accessing i.e., static methods have no access to state (instance variables/methods). Note this holds for `main` method too as it is `static`.
 > ```java
 > public class InstanceInStatic {
@@ -194,7 +194,7 @@
 > ```
 - we can access anything from an instance method, even `static` variables/methods.
 - method overloading doesn't work if we only change the return type as return type is not included in the method signature.
-###### Day 09
+###### Day 09 [↑](#today-i-learned-in-java- "Back to Top")
 - when there are multiple methods with the same name, the compiler tries to find a method having parameters with the exact same data type, but if it isn't present then it tries to find a method that has the next larger data type.
 > ```java
 > void example(int a) {}
@@ -221,10 +221,10 @@
 > void foo(boolean flag, int... items) {}
 > void foo(boolean flag, int[] items) {}
 > ```
-###### Day 10
+###### Day 10 [↑](#today-i-learned-in-java- "Back to Top")
 - the main purpose of the constructor is to initialize the object's state.
 - the default constructor is inserted only if the class definition does not include a constructor.
-- constructors doesn't return anything but they can have a `return`.
+- constructors don't return anything but they can have a `return`.
 - `this()` is used to call an overloaded constructor, must be first statement in a constructor.
 - we can't have more than one `this()` per constructor.
 - calling the same constructor using `this()` will lead to a recursive invocation error. Another way this is possible if one constructor calls another and the called constructor calls the callee.
@@ -241,7 +241,7 @@
 - we can't have an instance variable inside `this()` invocation statement, it's because the variable is not yet initialized at that point in time, it'll result in `error: cannot reference variable before supertype constructor has been called`.
 - there is an implicit call to the `Object` superclass after which the control comes to the subclass where all the instance variables get initialized.
 - from **Java 11** onwards we can compile and execute a program by running a single command, `java Hello.java`. Compilation will happen in memory and so will not generate a `.class`.
-###### Day 11
+###### Day 11 [↑](#today-i-learned-in-java- "Back to Top")
 - arithmetic operators can't be used on `boolean`, but bitwise operators can be used.
 - it is not possible to use bitwise not (`~`) with `boolean`, if such a behavior is needed then we will have to use logical not (`!`).
 - bitwise operators can't be used on `float` and `double`.
@@ -257,7 +257,7 @@
 >     ...
 > ```
 - according to the *Java Language Specification (JLS)*, `&`, `|` and `^` when applied on `boolean` operands are referred to as logical operators and not bitwise. In other words, the operators `&`, `|`, `^`, `~` are referred to as bitwise ONLY when they are applied on integer operands.
-###### Day 12
+###### Day 12 [↑](#today-i-learned-in-java- "Back to Top")
 - `switch` can take an `enum` or an integer (`byte`, `short`, `char`, `int`) expression or a corresponding wrapper class. At runtime when the variable is evaluated, the primitive value will be unwrapped and will be compared with the `case` labels.
 - `switch` expression can also be a `String` (from *Java 7* onwards).
 - as we can have object references as `switch` expression, there is a possibility of it evaluating to `null` leading to a `NullPointerException`.
@@ -284,7 +284,7 @@
 > }
 > ```
 - the label used with a `break` statement must be the label of the block in which the `break` statement appears.
-###### Day 13
+###### Day 13 [↑](#today-i-learned-in-java- "Back to Top")
 - it is possible to have a labelled `continue` which can only be associated with an enclosing loop statement unlike labelled `break` which can be associated with any block statement.
 - classes can directly reference other classes in the package by directly using the class names, but to access a class from a different package we have to either use `import` or by using the package followed by dot followed by the class name.
 > ```java
@@ -298,7 +298,7 @@
 > ```
 - `java.lang.*` is imported by default.
 - strings are objects of the class `java.lang.String`.
-###### Day 14
+###### Day 14 [↑](#today-i-learned-in-java- "Back to Top")
 - if we want to access a `class` from another `package` then it should have the `public` access modifier, not required if we are accessing it from the same `package`.
 - there are four access modifiers:
   - **private**: inside class
@@ -335,7 +335,7 @@
 > System.out.println(s1 == s2);  // true
 > System.out.println(s1 == s3);  // false
 > ```
-###### Day 15
+###### Day 15 [↑](#today-i-learned-in-java- "Back to Top")
 -  the `String` objects created using the `new` keyword are separate objects in memory, they can still benefit from the memory-saving properties of the string pool. If we call the `intern()` method on a `String` object created using the `new` keyword, the JVM will add that string to the pool if it's not already there, and return a reference to the interned string.
 - the primary use of the `intern()` method is to conserve memory. When we intern a string, the JVM only needs to store one copy of that string in memory, and all references to that string will refer to the same object. This can be especially useful when working with a large number of strings that have the same value, as it can greatly reduce the amount of memory used by the program.
 > ```java
@@ -370,7 +370,7 @@
 > System.out.println(s1 == "Hel" + s2);    // false
 > System.out.println(s1 == "Hel" + s3);    // true
 > ```
-###### Day 16
+###### Day 16 [↑](#today-i-learned-in-java- "Back to Top")
 - classes and interfaces can only have `public` or `default` access specifiers.
 - all the methods in `java.lang.Math` are static.
 - the `Math` class is non-instantiable, which means we can't create it's objects. This can be achieved by making the default constructor `private`.
@@ -394,7 +394,7 @@
 - we can reference static variables from instance initializers.
 - if there is a chain of overloaded constructor invocations, then instance initializer code will be copied only into the last invoked constructor. This ensures that instance initializer code is executed only once for every object that gets created. So, instance initializer code is copied into every constructor that does not have a `this()` invocation statement.
 - if there are multiple initializers (static or instance) then they will be executed in order.
-###### Day 17
+###### Day 17 [↑](#today-i-learned-in-java- "Back to Top")
 - `java.lang.StringBuilder` has four constructors:
   - `StringBuilder()`: constructs a string builder with no characters in it and an initial capacity of 16 characters
   - `StringBuilder(CharSequence seq)`: constructs a string builder that contains the same characters as the specified `CharSequence`
@@ -421,7 +421,7 @@
 > System.out.println(s.capacity());    // 71
 > ```
 - the `trimToSize()` method attempts to reduce storage used for the character sequence. It creates a new internal character array with the current length of the buffer and copies the content of the old array to the new array.
-###### Day 18
+###### Day 18 [↑](#today-i-learned-in-java- "Back to Top")
 - the `delete` method in `StringBuilder` when called copies the remaining characters in the buffer to the left to fill in the gap created by the deleted characters. This operation can be slow if the buffer is large and the number of characters to delete is large.
 - when we make a reference variable `final` then the reference is constant, not the object content.
 - `final` variables can't get default values.
@@ -435,7 +435,7 @@
 > Integer boxedI = Integer.valueOf(1);
 > int i = boxedI.intValue();
 > ```
-###### Day 19
+###### Day 19 [↑](#today-i-learned-in-java- "Back to Top")
 - one of the advantages of using _static factory methods_ is that they allow for the caching and reusing objects, which can help to improve performance and reduce memory usage. This can be particularly useful when working with immutable objects, since they can be safely shared between different parts of a program.
 - below is a static factory method from creating `Integer` objects, which checks if the value passed in is within -128 (`IntegerCache.low`) to 127 (`IntegerCache.high`) first, and if it is, it returns a cached instance of an `Integer` object instead of creating a new one. This technique is used to improve performance and reduce memory usage.
 > ```java
@@ -461,7 +461,7 @@
 > System.out.println(a == b);       // true
 > System.out.println(a == c);       // false
 > ```
-###### Day 20
+###### Day 20 [↑](#today-i-learned-in-java- "Back to Top")
 - prior to _Java 5_ one had to manually create a boxed primitive by invoking either it's constructor or by `valueOf` method. But in _Java 5_ a feature called auto-boxing was introduced, meaning the compiler can automatically box a primitive if needed.
 > ```java
 > // auto-boxing
@@ -496,7 +496,7 @@
 > al.add(2.2);  // error
 > ```
 - `<`, `>`, `>=` and `<=` on boxed primitives will lead to auto-unboxing but in case of `==` and `!=` the addresses will be compared.
-###### Day 21
+###### Day 21 [↑](#today-i-learned-in-java- "Back to Top")
 - a class can extend from only one class i.e., Java does not support Multiple Inheritance.
 - _is-a_ test is a fundamental test that can be used to check inheritance relationship. If it is failing then inheritance relation should not be applied.
 - with polymorphism, a supertype can be assigned any of it's subtypes. It means that the type of object reference and the actual object referenced can be different, the type of object reference has to be a supertype of the actual object that is being referenced.
@@ -510,7 +510,7 @@
 > user.approveReview();    // compiler error, as User doesn't have this method
 > ```
 - at runtime, JVM uses the object type to decide which method is invoked, where JVM invokes the most specific version in the inheritance tree, starting from the object type and moving upwards in the tree.
-###### Day 22
+###### Day 22 [↑](#today-i-learned-in-java- "Back to Top")
 - once implicit casting on an inherited class is done, we can only invoke those subclass methods which are also defined in the super-class but sub-class specific methods become invalid. To address this we need to use explicit casting.
 > ```java
 > Staff s = new Editor();
@@ -534,7 +534,7 @@
   - same parameters and compitable return types (must be same or subclass type, applicable only to non-primitive return types)
   - can't be less accessible (access level must be same or friendlier, e.g., we can't override a `public` method and make it `private`)
 - the `super` keyword is related to objects that's why it can never be used inside a `static` method.
-###### Day 23
+###### Day 23 [↑](#today-i-learned-in-java- "Back to Top")
 - **method binding** is the process of connecting a method call to the actual implementation of the method. There are two types of method binding:
   - **static binding**: it occurs at compile time, where the compiler resolves the method call based on the declared type of the object.
   - **dynamic binding**: it occurs at runtime, where the actual implementation of the method is determined based on the runtime type of the object.
@@ -543,7 +543,7 @@
 - a `final` method can not be overriden.
 - both static as well as instance variables can not be overridden. Note that instance methods can be overridden but not instance variables.
 - static methods can not be overridden since they are bounded at compile time and method overriding relies on dynamic binding at runtime. If static methods are redefined by a derived class, then it is not Method Overriding but Method Hiding.
-###### Day 24
+###### Day 24 [↑](#today-i-learned-in-java- "Back to Top")
 - if we pass `this` to `System.out.println()` then it automatically invokes `toString()`. If the `toString()` method is overridden then it'll get invoked.
 - inherited methods might depend on superclass state that's why superclasses must be initialized first. This means that all the superclass constructors should run before the subclass constructor. This is acheived by _constructor chaining_, where a subclass implicitly calls the superclass constructor and this process goes on until `Object` class's constructor is invoked.
 - the `super()` method can be used to explicitly invoke a superclass's constructor, however it must be the first statement.
@@ -566,7 +566,7 @@
   1. by making the class `final` (not extendible but instantiable e.g., `String` class)
   2. by making the constructor `private` (neither extendible nor instantiable e.g., `Math` class)
 - the reason why making the constructor `private` prevents inheritance is because the `private` access modifier makes the constructor private to the class and so it can not be invoked from the subclass which means constructor chaining is not possible and hence the subclass can not be created.
-###### Day 25
+###### Day 25 [↑](#today-i-learned-in-java- "Back to Top")
 - `abstract` classes are non-instantiable, but defines common protocol for subclasses.
 > ```java
 > abstract class Syntax {
