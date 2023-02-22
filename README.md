@@ -29,7 +29,8 @@
 <a href="#day-22-">22</a> •
 <a href="#day-23-">23</a> •
 <a href="#day-24-">24</a> •
-<a href="#day-25-">25</a>
+<a href="#day-25-">25</a> •
+<a href="#day-26-">26</a>
 </details>
 
 ###### Day 00 [↑](#today-i-learned-in-java- "Back to Top")
@@ -614,5 +615,32 @@
 - an interface can only be a reference type and it can never be an object type.
 > ```java
 > Interface obj = new Interface();  // not possible
+> ```
+###### Day 26 [↑](#today-i-learned-in-java- "Back to Top")
+- like a class, an interface can also extend another interface. Note that a class implementing the sub-interface has to implement all abstract methods declared in both the sub as well as the super-interfaces. For example, `ArrayList` implements abstract methods from both `List` as well as `Collection` interfaces.
+> ```java
+> public interface List extends Collection {
+>     ...
+> }
+> ```
+- a class can only implement an interface but it can not extend an interface.
+- unlike classes, an interface can extend multiple interfaces.
+> ```java
+> public interface BlockingDeque extends BlockingQueue, Deque { ... }
+> ```
+- we should prefer interfaces over abstract classes.
+- we should refer to objects by their interfaces i.e., whenever possible try to use an interface as a reference type in all kinds of variable declarations and also use them as method return types.
+> ```java
+> void foo(ArrayList list) {
+>     // we can invoke this method with an `ArrayList` only
+>     // i.e., we can not pass another similar implementation
+> }
+> foo(new ArrayList());
+> 
+> void bar(List list) {
+>     // as `List` is an interface, we can pass any type which implements it
+> }
+> bar(new ArrayList());
+> bar(new LinkedList());
 > ```
 </samp>

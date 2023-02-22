@@ -184,11 +184,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 630 - ((29 * winheight(0) + 16) / 33)
+let s:l = 645 - ((29 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-630
+645
 normal! 0
 wincmd w
 argglobal
@@ -3820,7 +3820,7 @@ exe '6resize ' . ((&lines * 12 + 20) / 41)
 exe 'vert 6resize ' . ((&columns * 85 + 86) / 172)
 tabnext 1
 set stal=1
-badd +630 ../README.md
+badd +645 ../README.md
 badd +1 oops/polymorphism/User.java
 badd +1 oops/inheritance/p1/A1.java
 badd +1 oops/abstraction/AbstractSuperclass.java
