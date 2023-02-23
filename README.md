@@ -628,7 +628,7 @@
 >     // i.e., we can not pass another similar implementation
 > }
 > foo(new ArrayList());
- 
+> 
 > void bar(List list) {
 >     // as `List` is an interface, we can pass any type which implements it
 > }
