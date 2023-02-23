@@ -30,7 +30,8 @@
 <a href="#day-23-">23</a> •
 <a href="#day-24-">24</a> •
 <a href="#day-25-">25</a> •
-<a href="#day-26-">26</a>
+<a href="#day-26-">26</a> •
+<a href="#day-27-">27</a>
 </details>
 
 ###### Day 00 [↑](#today-i-learned-in-java- "Back to Top")
@@ -315,7 +316,7 @@
 >     }
 > }
 > ```
-- a string literal is also a string object. Below are a few ways to initialize a `String` object.
+- a string literal is also a `String` object. Below are a few ways to initialize a `String` object.
 > ```java
 > String s0 = "Hello!";
 > 
@@ -360,7 +361,7 @@
 > From this point forward, s1 and s2 refer to the same object in memory.
 > */
 > ```
-- the term "intern" is a metaphor that refers to the practice of interning objects in a pool, much like a summer internship program. Just as an intern program pools together interns from different companies to work on a shared project, string interning pools together all strings with the same value so that they can be represented by a single instance in memory.
+- the term "intern" is a metaphor that refers to the practice of interning objects in a pool, much like an internship program. Just as an intern program pools together interns from different companies to work on a shared project, string interning pools together all strings with the same value so that they can be represented by a single instance in memory.
 - the result string literal concatenation is also stored in the string pool, however if one of them is a variable, the result won't go to the string pool as it is evaluated at the run time. But if we make the variable a `final` then it'll be evaluated at compile time itself and will end up at the string pool.
 > ```java
 > String s1 = "Hello";
@@ -391,7 +392,7 @@
 - static initializers are useful when we need to initialize `static` variables with a value that can't be computed at compile time.
 - we can't reference instance variables from static intializers.
 - instance initializers are used to initialize instance variables. The syntax is similar to static initializer but without the `static` keyword.
-- a constructor can also be use initialize instance variables but instance initializers are helpful if we want to share a block of code between multiple constructors i.e., Java compiler copies initializer blocks into the beginning of every constructor.
+- a constructor can also be used to initialize instance variables but instance initializers are helpful if we want to share a block of code between multiple constructors i.e., Java compiler copies initializer blocks into the beginning of every constructor.
 - we can reference static variables from instance initializers.
 - if there is a chain of overloaded constructor invocations, then instance initializer code will be copied only into the last invoked constructor. This ensures that instance initializer code is executed only once for every object that gets created. So, instance initializer code is copied into every constructor that does not have a `this()` invocation statement.
 - if there are multiple initializers (static or instance) then they will be executed in order.
@@ -491,14 +492,9 @@
 > ++i;
 > int j = 3 * i;
 > ```
-- autoboxing is not supported with generics.
-> ```java
-> ArrayList<Double> al = new ArrayList<>();
-> al.add(2.2);  // error
-> ```
 - `<`, `>`, `>=` and `<=` on boxed primitives will lead to auto-unboxing but in case of `==` and `!=` the addresses will be compared.
 ###### Day 21 [↑](#today-i-learned-in-java- "Back to Top")
-- a class can extend from only one class i.e., Java does not support Multiple Inheritance.
+- a class can extend from only one class i.e., Java does not support _Multiple Inheritance_.
 - _is-a_ test is a fundamental test that can be used to check inheritance relationship. If it is failing then inheritance relation should not be applied.
 - with polymorphism, a supertype can be assigned any of it's subtypes. It means that the type of object reference and the actual object referenced can be different, the type of object reference has to be a supertype of the actual object that is being referenced.
 > ```java
@@ -546,7 +542,7 @@
 - static methods can not be overridden since they are bounded at compile time and method overriding relies on dynamic binding at runtime. If static methods are redefined by a derived class, then it is not Method Overriding but Method Hiding.
 ###### Day 24 [↑](#today-i-learned-in-java- "Back to Top")
 - if we pass `this` to `System.out.println()` then it automatically invokes `toString()`. If the `toString()` method is overridden then it'll get invoked.
-- inherited methods might depend on superclass state that's why superclasses must be initialized first. This means that all the superclass constructors should run before the subclass constructor. This is acheived by _constructor chaining_, where a subclass implicitly calls the superclass constructor and this process goes on until `Object` class's constructor is invoked.
+- inherited methods might depend on superclass state that's why superclasses must be initialized first. This means that all the superclass constructors should run before the subclass constructor. This is achieved by _constructor chaining_, where a subclass implicitly calls the superclass constructor and this process goes on until the `Object` class's constructor is invoked.
 - the `super()` method can be used to explicitly invoke a superclass's constructor, however it must be the first statement.
 - a constructor can have either `this()` or `super()` but not both.
 - with overloaded constructors, the last one in the heirarchy is responsible for invoking a superclass constructor.
@@ -570,30 +566,28 @@
 ###### Day 25 [↑](#today-i-learned-in-java- "Back to Top")
 - `abstract` classes are non-instantiable, but defines common protocol for subclasses.
 > ```java
-> abstract class Syntax {
->     ...
-> }
+> abstract class Syntax { ... }
 > ```
 - like an abstract class an abstract method also involves inserting the keyword `abstract` in the method declaration.
   - it doesn't have a body.
-  - must be overridden (which also means that abstract methods can not be static)
+  - must be overridden (which also means that `abstract` methods can not be `static`)
 - `abstract` method → `abstract` class
 - `abstract` class → any method
 - a subclass can also be `abstract` and it need not override `abstract` methods.
-- if a subclass is non abstract then it must override all of the unimplemented abstract methods.
+- if a subclass is non-abstract then it must override all of the unimplemented abstract methods.
 - an abstract class can also have a constructor. However, this constructor is only accessible from a subclass constructor as it is not possible to instantiate an abstract class.
 - if we do not include a constructor in an abstract class (which is the typical case), then compiler inserts a no-arg constructor implicitly just like in the case of a normal class. And this implicitly created constructor will also be invoked from the subclass as part of constructor chaining process and this constructor will in turn invoke the superclass constructor, i.e., includes a `super()`. So, nothing is different from the regular superclass & subclass scenario.
 - in general, the term _"type"_ is often used to refer a either a `class` or an `interface`.
-- prior to Java 8, `interface` could only have public abstract methods but since Java 8 onwards an `interface` can have concrete methods.
+- prior to _Java 8_, `interface` could only have public abstract methods but since _Java 8_ onwards an `interface` can have concrete methods.
 - interfaces will not have any state i.e., they do not have instance variables or constructors which makes them non-instantiable.
 - we can implement multiple interfaces but can only inherit one (as Java doesn't support Multiple Inheritance). Moreover an interface can have multiple subclasses from multiple packages.
-- an `interface` is implicitly abstract. 
+- an `interface` is implicitly abstract.
 > ```java
 > public interface InterfaceName {  // or `public abstract interface InterfaceName`
 >     /**
 >      * static final fields
 >      * abstract methods
->      * methods
+>      * concrete methods (from Java 8 onwards)
 >      * static methods
 >      * nested classes or interfaces
 >      */
@@ -619,9 +613,7 @@
 ###### Day 26 [↑](#today-i-learned-in-java- "Back to Top")
 - like a class, an interface can also extend another interface. Note that a class implementing the sub-interface has to implement all abstract methods declared in both the sub as well as the super-interfaces. For example, `ArrayList` implements abstract methods from both `List` as well as `Collection` interfaces.
 > ```java
-> public interface List extends Collection {
->     ...
-> }
+> public interface List extends Collection { ... }
 > ```
 - a class can only implement an interface but it can not extend an interface.
 - unlike classes, an interface can extend multiple interfaces.
@@ -636,11 +628,59 @@
 >     // i.e., we can not pass another similar implementation
 > }
 > foo(new ArrayList());
-> 
+ 
 > void bar(List list) {
 >     // as `List` is an interface, we can pass any type which implements it
 > }
 > bar(new ArrayList());
 > bar(new LinkedList());
 > ```
+###### Day 27 [↑](#today-i-learned-in-java- "Back to Top")
+- marker interfaces dont't have any methods and are used to mark or tag a class of having a certain property. Below are few examples of marker interfaces in the Java API:
+  - `java.util.RandomAccess`: any class implementing this interface declares that it allows fast random access of its elements. `ArrayList` is once such class which implements it.
+  - `java.io.Serializable`: any class implementing this interface declares that it allows its objects to be serialized, which means that the objects can be converted into byte streams, which can be saved to a file or transmitted over a network. This process is useful for saving the state of an object and for transferring objects between different applications or systems.
+  - `java.lang.Cloneable`: by implementing this interface a class declares that its objects can return their clones i.e., a duplicate object having the same state as the original.
+> ```java
+> class CloneableClass implements Cloneable {
+>     public CloneableClass clone() {
+>         try {
+>             return (CloneableClass) super.clone();  // invokes `Object.clone()` but return type is `Object`
+>         } catch (CloneNotSupportedException e) {}
+>         return null;
+>     }
+> }
+> // Note: `clone()` in `Object` is protected, so something like above is required to support cloning
+> ```
+> ```java
+> // another example of a marker interface in action
+> Collections.shuffle(List list) {
+>     if (list instanceof RandomAccess) {
+>         // apply shuffle directly
+>     } else {
+>         // 1. copy elements to an array
+>         // 2. shuffle array
+>         // 3. dump array back into list
+>     }
+> }
+> ```
+- to use the `clone()` method, a class must implement the `Cloneable` interface. If a class attempts to call `clone()` on an object that does not implement `Cloneable`, a `CloneNotSupportedException` will be thrown at runtime.
+- the `clone()` method performs a shallow copy, which means it creates a new object with the same contents as the original object, but the contents themselves are not cloned. Instead, the new object contains references to the same objects as the original. Therefore, any changes made to the objects referred to by the new object will also affect the original object and vice versa.
+> ```java
+> class A {
+>     B b;
+>     A() {
+>         b = new B();
+>     }
+> }
+> class B {}
+> ```
+> ```java
+> A a1 = new A();
+> A a2 = a1.clone();
+> // the `B` instance in `a1` and `a2` will be the same.
+> ```
+- the `default` keyword is used in interfaces to define a default implementation for a method (from _Java 8_ onwards). The method can be called from any class that implements the interface, but can be overridden by any implementing class if necessary. Also, these are instance methods.
+- if a class extends an class with some method and implements an interface with some default method, and both methods have the same signature, then the definition in the super-class has higher precedence over the default method in the super-interface. The default method can be invoked by using `InterfaceName.super.method()`.
+- a default method can be re-abstracted in a sub-interface or in an abstract sub-class.
+- we can not use `final` or `synchronized` keywords with default methods.
 </samp>

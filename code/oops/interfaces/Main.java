@@ -6,5 +6,6 @@ class Main {
 		c.foo();
 		c.bar();
 		c.foobar();
+		c.go();
 	}
 }
