@@ -7,5 +7,10 @@ class Main {
 		c.bar();
 		c.foobar();
 		c.go();
+
+		new Main().lambdaTest(() -> System.out.println("FunctionalInterface: bar"));
+	}
+	void lambdaTest(FunctionalInterface fi) {
+		fi.bar();
 	}
 }

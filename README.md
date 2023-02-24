@@ -31,7 +31,8 @@
 <a href="#day-24-">24</a> •
 <a href="#day-25-">25</a> •
 <a href="#day-26-">26</a> •
-<a href="#day-27-">27</a>
+<a href="#day-27-">27</a> •
+<a href="#day-28-">28</a>
 </details>
 
 ###### Day 00 [↑](#today-i-learned-in-java- "Back to Top")
@@ -587,8 +588,8 @@
 >     /**
 >      * static final fields
 >      * abstract methods
->      * concrete methods (from Java 8 onwards)
->      * static methods
+>      * concrete/default methods (from Java 8 onwards)
+>      * static methods (from Java 8 onwards)
 >      * nested classes or interfaces
 >      */
 > 
@@ -611,7 +612,7 @@
 > Interface obj = new Interface();  // not possible
 > ```
 ###### Day 26 [↑](#today-i-learned-in-java- "Back to Top")
-- like a class, an interface can also extend another interface. Note that a class implementing the sub-interface has to implement all abstract methods declared in both the sub as well as the super-interfaces. For example, `ArrayList` implements abstract methods from both `List` as well as `Collection` interfaces.
+- like a class, an interface can also extend another interface (it can me more than one). Note that a class implementing the sub-interface has to implement all abstract methods declared in both the sub as well as the super-interfaces. For example, `ArrayList` implements abstract methods from both `List` as well as `Collection` interfaces.
 > ```java
 > public interface List extends Collection { ... }
 > ```
@@ -683,4 +684,13 @@
 - if a class extends an class with some method and implements an interface with some default method, and both methods have the same signature, then the definition in the super-class has higher precedence over the default method in the super-interface. The default method can be invoked by using `InterfaceName.super.method()`.
 - a default method can be re-abstracted in a sub-interface or in an abstract sub-class.
 - we can not use `final` or `synchronized` keywords with default methods.
+###### Day 28 [↑](#today-i-learned-in-java- "Back to Top")
+- below are few benefits of default methods:
+  - interface evolution (main purpose)
+  - default implementation can be overridden
+  - eliminate utility classes (e.g., `list.sort()` instead of `Collection.sort(List)`)
+  - allow interface to stay as _functional interface_ (an interface with exactly one abstract method)
+- a functional interface will remain as a functional interface even if we add a `default` or `static` method to it.
+- unlike static methods in classes, static methods in interfaces are not inherited.
+- unlike classes, static methods in interfaces can only be invoked via interface name but not from an object reference.
 </samp>
