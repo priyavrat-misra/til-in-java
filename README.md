@@ -32,7 +32,8 @@
 <a href="#day-25-">25</a> •
 <a href="#day-26-">26</a> •
 <a href="#day-27-">27</a> •
-<a href="#day-28-">28</a>
+<a href="#day-28-">28</a> •
+<a href="#day-29-">29</a>
 </details>
 
 ###### Day 00 [↑](#today-i-learned-in-java- "Back to Top")
@@ -693,4 +694,48 @@
 - a functional interface will remain as a functional interface even if we add a `default` or `static` method to it.
 - unlike static methods in classes, static methods in interfaces are not inherited.
 - unlike classes, static methods in interfaces can only be invoked via interface name but not from an object reference.
+- JIT (Just-In-Time) compilation is a method used by the Java Virtual Machine (JVM) to improve the performance of Java programs. The JIT compiler analyzes the bytecode of a Java program as it is running, and translates the frequently executed portions of the code into native machine code, which can be executed directly by the computer's processor.
+  1. A Java program is loaded into the JVM and the bytecode is interpreted by the JIT compiler.
+  2. As the program is running, the JIT compiler monitors the bytecode and identifies frequently executed sections of code.
+  3. The JIT compiler then translates these frequently executed sections of bytecode into native machine code.
+  4. The native machine code is then executed by the processor, resulting in improved performance of the program.
+  5. As the program continues to run, the JIT compiler may continue to identify and compile more sections of code.
+- JIT compilation can significantly improve the performance of Java programs, but it can also add overhead to the program, as the JIT compiler needs to monitor and analyze the bytecode.
+###### Day 29 [↑](#today-i-learned-in-java- "Back to Top")
+- an exception is simply an object of `java.lang.Throwable` or one of it's subclasses.
+- `java.lang.Throwable` is the super-class of all exception related classes.
+- the `throws` keyword is used in method signatures to declare that the method may throw certain types of exceptions. When a method throws an exception, it essentially indicates that something went wrong during the execution of the method, and it cannot be handled within the method itself. Instead, the exception is "thrown" back to the calling method, which can either handle the exception or propagate it further down the call stack. If the `main` method also `throws` the exception then it will not be handled, as `main` is in the bottom of the call stack. 
+- The `throws` keyword is followed by one or more exception classes, separated by commas.
+- The `throws` keyword is not used to actually throw an exception; it is only used to declare that a method may throw an exception of a certain type. To actually throw an exception, we use the `throw` keyword followed by an instance of the exception class.
+> ```java
+> import java.io.IOException;
+> import java.io.FileNotFoundException;
+> 
+> void example() throws IOException, FileNotFoundException {
+>     if (someCondition)
+>         throw new IOException("An I/O error occured.");
+> }
+> ```
+- To avoid using the `throws` keyword, we can handle the exception using a try-catch block. Instead of declaring the exception using the `throws` keyword, we can surround the code that might throw an exception with a `try` block, and catch the exception using a `catch` block. By doing this, we can handle the exception ourselves instead of propagating it down the call stack. Also note that we can throw the exception from inside the catch block as well.
+> ```java
+> void example() {
+>     try {
+>         // code that might throw an exception
+>     } catch (FileNotFoundException e) {
+>         e.printStackTrace();
+>     } catch (IOException e) {
+>         throw e;
+>     }
+>     // note: sub-class exception catch should be before super-class
+>     // else it'll lead to an unreachable catch block compiler error 
+> }
+> ```
+- `Exception` objects can be referenced polymorphically.
+> ```java
+> void example() throws IOException, FileNotFoundException { ... }
+> ```
+> as FileNotFoundException is a subclass of IOException, we can do something like below
+> ```java
+> void example() throws IOException { ... }
+> ```
 </samp>
