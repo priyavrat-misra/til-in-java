@@ -34,27 +34,27 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 34 + 20) / 41)
-exe '2resize ' . ((&lines * 3 + 20) / 41)
+exe '1resize ' . ((&lines * 33 + 20) / 41)
+exe '2resize ' . ((&lines * 4 + 20) / 41)
 argglobal
-let s:l = 738 - ((27 * winheight(0) + 17) / 34)
+let s:l = 814 - ((27 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-738
-normal! 05|
+814
+normal! 0162|
 wincmd w
 argglobal
-terminal ++curwin ++cols=172 ++rows=3 
-let s:l = 1 - ((0 * winheight(0) + 1) / 3)
+terminal ++curwin ++cols=172 ++rows=4 
+let s:l = 1 - ((0 * winheight(0) + 2) / 4)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
 normal! 0
 wincmd w
-exe '1resize ' . ((&lines * 34 + 20) / 41)
-exe '2resize ' . ((&lines * 3 + 20) / 41)
+exe '1resize ' . ((&lines * 33 + 20) / 41)
+exe '2resize ' . ((&lines * 4 + 20) / 41)
 tabnext
 edit Grader.java
 set splitbelow splitright
@@ -538,13 +538,15 @@ exe '6resize ' . ((&lines * 12 + 20) / 41)
 exe 'vert 6resize ' . ((&columns * 85 + 86) / 172)
 tabnext 1
 set stal=1
-badd +696 ~/til-in-java/README.md
+badd +741 ~/til-in-java/README.md
+badd +1 Grader.java
 badd +1 oops/polymorphism/User.java
 badd +1 oops/inheritance/p1/A1.java
 badd +1 oops/abstraction/AbstractSuperclass.java
 badd +1 binding/p1/A.java
 badd +1 binding/p2/Main.java
 badd +1 oops/interfaces/A.java
+badd +1 GraderTest.java
 badd +9 oops/polymorphism/UserTest.java
 badd +1 oops/polymorphism/Staff.java
 badd +1 oops/polymorphism/Editor.java
@@ -564,8 +566,6 @@ badd +1 oops/interfaces/AbstractA.java
 badd +1 oops/interfaces/X.java
 badd +1 oops/interfaces/C.java
 badd +1 oops/interfaces/Main.java
-badd +0 Grader.java
-badd +0 GraderTest.java
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif

@@ -33,7 +33,8 @@
 <a href="#day-26-">26</a> •
 <a href="#day-27-">27</a> •
 <a href="#day-28-">28</a> •
-<a href="#day-29-">29</a>
+<a href="#day-29-">29</a> •
+<a href="#day-30-">30</a>
 </details>
 
 ###### Day 00 [↑](#today-i-learned-in-java- "Back to Top")
@@ -547,7 +548,7 @@
 - inherited methods might depend on superclass state that's why superclasses must be initialized first. This means that all the superclass constructors should run before the subclass constructor. This is achieved by _constructor chaining_, where a subclass implicitly calls the superclass constructor and this process goes on until the `Object` class's constructor is invoked.
 - the `super()` method can be used to explicitly invoke a superclass's constructor, however it must be the first statement.
 - a constructor can have either `this()` or `super()` but not both.
-- with overloaded constructors, the last one in the heirarchy is responsible for invoking a superclass constructor.
+- with overloaded constructors, the last one in the hierarchy is responsible for invoking a superclass constructor.
 - if we don't provide an invocation statement then the compiler inserts a `super()` implicitly, it will be added in a constructor that doesn't invoke a overloaded constructor.
 - if for any reason a superclass constructor can not be invoked then it'll lead to a compiler error.
 > ```java
@@ -725,6 +726,9 @@
 >         e.printStackTrace();
 >     } catch (IOException e) {
 >         throw e;
+>     } finally {
+>         // will run if an checked/unchecked exception is generated
+>         // and the corresponding handler is not present
 >     }
 >     // note: sub-class exception catch should be before super-class
 >     // else it'll lead to an unreachable catch block compiler error 
@@ -734,8 +738,78 @@
 > ```java
 > void example() throws IOException, FileNotFoundException { ... }
 > ```
-> as FileNotFoundException is a subclass of IOException, we can do something like below
+> as FileNotFoundException is a subclass of IOException, we can do something like:
 > ```java
 > void example() throws IOException { ... }
 > ```
+###### Day 30 [↑](#today-i-learned-in-java- "Back to Top")
+- `Throwable` is a superclass of all exceptions and errors.
+> ```plaintext
+>                           ┌──────────────── Throwble ──────────────────┐
+>                           ▼                                            ▼
+>      ┌────────────── Exception ────────────────┐                      Error
+>      ▼                   ▼                     ▼                      │
+> IOException         AWTException        RunTimeException              ├─VirtualMachineError
+> │                                       │                             │
+> ├─FileNotFoundException                 ├─NullPointerException        └─LinkageError
+> │                                       │                               │
+> └─EOFException                          ├─ArrayOutOfBoundsException     └─NoClassDefFoundError
+>                                         │
+>                                         ├─IllegalArgumentException
+>                                         │
+>                                         ├─ClassCastException
+>                                         │
+>                                         └─NumberFormatException
+> ```
+- exceptions are classified into two categories:
+  1. _Checked exceptions_ are those that the compiler checks at compile-time, and requires the programmer to handle or declare them using the `throws` keyword. If a method can potentially throw a checked exception, the programmer must either handle it using a try-catch block, or declare it using the `throws` keyword in the method signature.
+  2. _Unchecked exceptions_, on the other hand, are not checked by the compiler at compile-time, and don't require the programmer to handle or declare them. They are usually caused by programming errors, such as dividing by zero or accessing a null reference, and can be avoided by writing correct code.
+- some common examples of checked exceptions in Java include `IOException`, `SQLException`, and `ClassNotFoundException`, while common examples of unchecked exceptions include `NullPointerException`, `ArrayIndexOutOfBoundsException`, and `ArithmeticException`.
+- below are couple of rules when it comes to exceptions & method overriding:
+  1. If the super class method does not declare an exception, then the overriding method in the subclass cannot declare a checked exception, but can declare an unchecked exception.
+  2. If the super class method declares a checked exception, then the overriding method in the subclass can declare same exception or a subclass exception or no exception at all, but cannot declare parent exception.
+  3. If the super class method declares an unchecked exception, then the overriding method can declare any unchecked exception or no exception at all, but cannot declare a checked exception.
+- a `try` block must be accompanied by at least one `catch` block or `finally` block.
+> ```plaintext
+>    ┌────Yes──────Exception?─────No───────┐
+>    ▼                                     ▼
+> - try                             Skip rest of try
+> - finally                                │
+> - code after finally                     │
+>                                          ▼
+>                           ┌──Yes──Exception handler?──No──┐
+>                           ▼                               ▼
+>                        - catch                - finally, but not code after it
+>                        - finally              - switch control to invoking method
+>                        - code after finally   - repeat until matching handler is found
+> ```
+- before _Java 7_, resources such as file I/O streams had to be explicitly closed in a finally block. Below is a standard template of what was done before Java 7:
+> ```java
+> FileInputStream in = null;
+> try {
+>     in = new FileInputStream(filename);
+>     // read data
+> } catch (FileNotFoundException e) {
+>     ...
+> } finally {
+>     try {
+>         if (in != null)
+>             in.close();
+>     } catch (IOException e) { ... }
+> }
+> ```
+- "try with resources" block is a feature introduced in _Java 7_ that simplifies the process of working with resources that must be closed after use, such as files, streams, and database connections. It allows the developer to declare and initialize the resource inside the try statement, and the resource will be automatically closed when the block exits, regardless of whether an exception is thrown. The resource created within `try` parenthesis is implicitly `final`, so it can not be reassigned within the `try` block.
+- multiple resources can also be created within the `try` parenthesis and must be separated using <kbd>;</kbd>. The resources are created sequentially, once the try-catch block is evaluated the resources are closed in the reverse order. 
+> ```java
+> try (FileInputStream in = new FileInputStream(filename);
+>     FileOutputStream out = new FileOutputStream(filename)) {
+>     // read data
+> } catch (FileNotFoundException e) {
+>     // handle the exception
+> } catch (IOException e) {
+>     ...
+> }
+> ```
+- any resources that we create in the parenthesis must implement `java.lang.AutoCloseable` or one of it's sub-interfaces. It has only one method i.e., `close()`;
+- this `try` block need not have a `catch` or a `finally` provided that the code within the block and the overridden `close()` method does not throw an exception.
 </samp>
