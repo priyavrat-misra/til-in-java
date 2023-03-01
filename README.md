@@ -34,7 +34,8 @@
 <a href="#day-27-">27</a> •
 <a href="#day-28-">28</a> •
 <a href="#day-29-">29</a> •
-<a href="#day-30-">30</a>
+<a href="#day-30-">30</a> •
+<a href="#day-31-">31</a>
 </details>
 
 ###### Day 00 [↑](#today-i-learned-in-java- "Back to Top")
@@ -704,7 +705,6 @@
 - JIT compilation can significantly improve the performance of Java programs, but it can also add overhead to the program, as the JIT compiler needs to monitor and analyze the bytecode.
 ###### Day 29 [↑](#today-i-learned-in-java- "Back to Top")
 - an exception is simply an object of `java.lang.Throwable` or one of it's subclasses.
-- `java.lang.Throwable` is the super-class of all exception related classes.
 - the `throws` keyword is used in method signatures to declare that the method may throw certain types of exceptions. When a method throws an exception, it essentially indicates that something went wrong during the execution of the method, and it cannot be handled within the method itself. Instead, the exception is "thrown" back to the calling method, which can either handle the exception or propagate it further down the call stack. If the `main` method also `throws` the exception then it will not be handled, as `main` is in the bottom of the call stack. 
 - The `throws` keyword is followed by one or more exception classes, separated by commas.
 - The `throws` keyword is not used to actually throw an exception; it is only used to declare that a method may throw an exception of a certain type. To actually throw an exception, we use the `throw` keyword followed by an instance of the exception class.
@@ -743,7 +743,7 @@
 > void example() throws IOException { ... }
 > ```
 ###### Day 30 [↑](#today-i-learned-in-java- "Back to Top")
-- `Throwable` is a superclass of all exceptions and errors.
+- `java.lang.Throwable` is the super-class of all exception related classes and errors.
 > ```plaintext
 >                           ┌──────────────── Throwble ──────────────────┐
 >                           ▼                                            ▼
@@ -771,7 +771,7 @@
   3. If the super class method declares an unchecked exception, then the overriding method can declare any unchecked exception or no exception at all, but cannot declare a checked exception.
 - a `try` block must be accompanied by at least one `catch` block or `finally` block.
 > ```plaintext
->    ┌────Yes──────Exception?─────No───────┐
+>    ┌─────No─────Exception?─────Yes───────┐
 >    ▼                                     ▼
 > - try                             Skip rest of try
 > - finally                                │
@@ -783,7 +783,7 @@
 >                        - finally              - switch control to invoking method
 >                        - code after finally   - repeat until matching handler is found
 > ```
-- before _Java 7_, resources such as file I/O streams had to be explicitly closed in a finally block. Below is a standard template of what was done before Java 7:
+- before _Java 7_, resources such as file I/O streams had to be explicitly closed in a finally block. Below is a standard template of what was done before _Java 7_:
 > ```java
 > FileInputStream in = null;
 > try {
@@ -812,4 +812,17 @@
 > ```
 - any resources that we create in the parenthesis must implement `java.lang.AutoCloseable` or one of it's sub-interfaces. It has only one method i.e., `close()`;
 - this `try` block need not have a `catch` or a `finally` provided that the code within the block and the overridden `close()` method does not throw an exception.
+###### Day 31 [↑](#today-i-learned-in-java- "Back to Top")
+- in a multi-layered system where we have higher level methods invoking lower level methods and a higher level method catches an exception from a lower level then, according to _Effective Java_, instead of propagating that exception it should throw a new exception that is more meaningful in terms of higher level abstraction. This way the higher level is not polluted with lower level details, and this idiom is referred to as _Exception translation_. But in some cases the lower level exception might be appropriate to higher levels, in that case it is fine to propagate them. 
+- _exception chaining_, also known as _exception wrapping_, is a technique used to associate one exception with another. It is a way to provide additional context about an exception and its cause. It is useful when an exception occurs deep within the call stack, but the root cause of the problem may be higher up in the stack. By wrapping the original exception with another one, we can pass the original exception up the call stack while providing more context about what caused it.
+- to chain exceptions, we can pass the original exception to the constructor of a new exception. This new exception becomes the "wrapper" exception, and the original exception becomes its cause. We can then throw the wrapper exception, which includes information about both the original exception and the reason why it occurred.
+- in this example, if an `IOException` occurs, we wrap it in a new `RuntimeException` and pass the original exception as its cause. When the `RuntimeException` is thrown, it includes information about the original exception and the reason why it occurred. This can be useful for debugging and troubleshooting issues in a system.
+> ```java
+> try {
+>     // Some code that may throw an exception
+> } catch (IOException e) {
+>     // Wrap the original exception with a new exception
+>     throw new RuntimeException("Error occurred while processing data", e);
+> }
+> ```
 </samp>

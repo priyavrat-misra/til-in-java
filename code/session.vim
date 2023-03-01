@@ -20,6 +20,8 @@ tabnew
 tabnew
 tabnew
 tabnew
+tabnew
+tabnew
 tabrewind
 edit ~/til-in-java/README.md
 set splitbelow splitright
@@ -34,27 +36,27 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 33 + 20) / 41)
-exe '2resize ' . ((&lines * 4 + 20) / 41)
+exe '1resize ' . ((&lines * 31 + 20) / 41)
+exe '2resize ' . ((&lines * 6 + 20) / 41)
 argglobal
-let s:l = 814 - ((27 * winheight(0) + 16) / 33)
+let s:l = 827 - ((22 * winheight(0) + 15) / 31)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-814
-normal! 0162|
+827
+normal! 05|
 wincmd w
 argglobal
-terminal ++curwin ++cols=172 ++rows=4 
-let s:l = 1 - ((0 * winheight(0) + 2) / 4)
+terminal ++curwin ++cols=172 ++rows=6 
+let s:l = 1 - ((0 * winheight(0) + 3) / 6)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
 normal! 0
 wincmd w
-exe '1resize ' . ((&lines * 33 + 20) / 41)
-exe '2resize ' . ((&lines * 4 + 20) / 41)
+exe '1resize ' . ((&lines * 31 + 20) / 41)
+exe '2resize ' . ((&lines * 6 + 20) / 41)
 tabnext
 edit Grader.java
 set splitbelow splitright
@@ -203,7 +205,7 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
-normal! 0
+normal! 05|
 wincmd w
 argglobal
 if bufexists("oops/inheritance/p1/B1.java") | buffer oops/inheritance/p1/B1.java | else | edit oops/inheritance/p1/B1.java | endif
@@ -536,9 +538,61 @@ exe '5resize ' . ((&lines * 12 + 20) / 41)
 exe 'vert 5resize ' . ((&columns * 85 + 86) / 172)
 exe '6resize ' . ((&lines * 12 + 20) / 41)
 exe 'vert 6resize ' . ((&columns * 85 + 86) / 172)
+tabnext
+edit exceptions/p1/Main.java
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 89 + 86) / 172)
+exe 'vert 2resize ' . ((&columns * 82 + 86) / 172)
+argglobal
+let s:l = 1 - ((0 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+argglobal
+if bufexists("exceptions/p1/HttpConnect.java") | buffer exceptions/p1/HttpConnect.java | else | edit exceptions/p1/HttpConnect.java | endif
+let s:l = 1 - ((0 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+exe 'vert 1resize ' . ((&columns * 89 + 86) / 172)
+exe 'vert 2resize ' . ((&columns * 82 + 86) / 172)
+tabnext
+edit exceptions/TryWithResources.java
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+let s:l = 1 - ((0 * winheight(0) + 19) / 39)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
 tabnext 1
 set stal=1
-badd +741 ~/til-in-java/README.md
+badd +827 ~/til-in-java/README.md
 badd +1 Grader.java
 badd +1 oops/polymorphism/User.java
 badd +1 oops/inheritance/p1/A1.java
@@ -546,6 +600,8 @@ badd +1 oops/abstraction/AbstractSuperclass.java
 badd +1 binding/p1/A.java
 badd +1 binding/p2/Main.java
 badd +1 oops/interfaces/A.java
+badd +1 exceptions/p1/Main.java
+badd +1 exceptions/TryWithResources.java
 badd +1 GraderTest.java
 badd +9 oops/polymorphism/UserTest.java
 badd +1 oops/polymorphism/Staff.java
@@ -566,6 +622,7 @@ badd +1 oops/interfaces/AbstractA.java
 badd +1 oops/interfaces/X.java
 badd +1 oops/interfaces/C.java
 badd +1 oops/interfaces/Main.java
+badd +1 exceptions/p1/HttpConnect.java
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
