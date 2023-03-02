@@ -22,6 +22,7 @@ tabnew
 tabnew
 tabnew
 tabnew
+tabnew
 tabrewind
 edit ~/til-in-java/README.md
 set splitbelow splitright
@@ -39,12 +40,12 @@ set winwidth=1
 exe '1resize ' . ((&lines * 31 + 20) / 41)
 exe '2resize ' . ((&lines * 6 + 20) / 41)
 argglobal
-let s:l = 827 - ((22 * winheight(0) + 15) / 31)
+let s:l = 864 - ((26 * winheight(0) + 15) / 31)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-827
-normal! 05|
+864
+normal! 0247|
 wincmd w
 argglobal
 terminal ++curwin ++cols=172 ++rows=6 
@@ -92,6 +93,76 @@ normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 93 + 86) / 172)
 exe 'vert 2resize ' . ((&columns * 78 + 86) / 172)
+tabnext
+edit exceptions/assertions/A.java
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd _ | wincmd |
+split
+wincmd _ | wincmd |
+split
+2wincmd k
+wincmd w
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 85 + 86) / 172)
+exe '2resize ' . ((&lines * 12 + 20) / 41)
+exe 'vert 2resize ' . ((&columns * 86 + 86) / 172)
+exe '3resize ' . ((&lines * 12 + 20) / 41)
+exe 'vert 3resize ' . ((&columns * 86 + 86) / 172)
+exe '4resize ' . ((&lines * 12 + 20) / 41)
+exe 'vert 4resize ' . ((&columns * 86 + 86) / 172)
+argglobal
+let s:l = 1 - ((0 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+argglobal
+if bufexists("exceptions/assertions/B.java") | buffer exceptions/assertions/B.java | else | edit exceptions/assertions/B.java | endif
+let s:l = 1 - ((0 * winheight(0) + 6) / 12)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+argglobal
+if bufexists("exceptions/assertions/p2/C.java") | buffer exceptions/assertions/p2/C.java | else | edit exceptions/assertions/p2/C.java | endif
+let s:l = 4 - ((3 * winheight(0) + 6) / 12)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+4
+normal! 0
+wincmd w
+argglobal
+if bufexists("exceptions/assertions/D.java") | buffer exceptions/assertions/D.java | else | edit exceptions/assertions/D.java | endif
+let s:l = 1 - ((0 * winheight(0) + 6) / 12)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+exe 'vert 1resize ' . ((&columns * 85 + 86) / 172)
+exe '2resize ' . ((&lines * 12 + 20) / 41)
+exe 'vert 2resize ' . ((&columns * 86 + 86) / 172)
+exe '3resize ' . ((&lines * 12 + 20) / 41)
+exe 'vert 3resize ' . ((&columns * 86 + 86) / 172)
+exe '4resize ' . ((&lines * 12 + 20) / 41)
+exe 'vert 4resize ' . ((&columns * 86 + 86) / 172)
 tabnext
 edit oops/polymorphism/User.java
 set splitbelow splitright
@@ -623,6 +694,10 @@ badd +1 oops/interfaces/X.java
 badd +1 oops/interfaces/C.java
 badd +1 oops/interfaces/Main.java
 badd +1 exceptions/p1/HttpConnect.java
+badd +0 exceptions/assertions/A.java
+badd +0 exceptions/assertions/B.java
+badd +0 exceptions/assertions/p2/C.java
+badd +0 exceptions/assertions/D.java
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif

@@ -35,7 +35,8 @@
 <a href="#day-28-">28</a> •
 <a href="#day-29-">29</a> •
 <a href="#day-30-">30</a> •
-<a href="#day-31-">31</a>
+<a href="#day-31-">31</a> •
+<a href="#day-32-">32</a>
 </details>
 
 ###### Day 00 [↑](#today-i-learned-in-java- "Back to Top")
@@ -728,7 +729,6 @@
 >         throw e;
 >     } finally {
 >         // will run if an checked/unchecked exception is generated
->         // and the corresponding handler is not present
 >     }
 >     // note: sub-class exception catch should be before super-class
 >     // else it'll lead to an unreachable catch block compiler error 
@@ -810,10 +810,10 @@
 >     ...
 > }
 > ```
-- any resources that we create in the parenthesis must implement `java.lang.AutoCloseable` or one of it's sub-interfaces. It has only one method i.e., `close()`;
+- any resources that we create in the parenthesis must implement `java.lang.AutoCloseable` or one of it's sub-interfaces. It has only one method i.e., `close()`.
 - this `try` block need not have a `catch` or a `finally` provided that the code within the block and the overridden `close()` method does not throw an exception.
 ###### Day 31 [↑](#today-i-learned-in-java- "Back to Top")
-- in a multi-layered system where we have higher level methods invoking lower level methods and a higher level method catches an exception from a lower level then, according to _Effective Java_, instead of propagating that exception it should throw a new exception that is more meaningful in terms of higher level abstraction. This way the higher level is not polluted with lower level details, and this idiom is referred to as _Exception translation_. But in some cases the lower level exception might be appropriate to higher levels, in that case it is fine to propagate them. 
+- in a multi-layered system where we have higher level methods invoking lower level methods and a higher level method catches an exception from a lower level, then according to _Effective Java_, instead of propagating that exception we should throw a new exception that is more meaningful in terms of higher level abstraction. This way the higher level is not polluted with lower level details, and this idiom is referred to as _Exception translation_. But in some cases the lower level exception might be appropriate to higher levels, in that case it is fine to propagate them. 
 - _exception chaining_, also known as _exception wrapping_, is a technique used to associate one exception with another. It is a way to provide additional context about an exception and its cause. It is useful when an exception occurs deep within the call stack, but the root cause of the problem may be higher up in the stack. By wrapping the original exception with another one, we can pass the original exception up the call stack while providing more context about what caused it.
 - to chain exceptions, we can pass the original exception to the constructor of a new exception. This new exception becomes the "wrapper" exception, and the original exception becomes its cause. We can then throw the wrapper exception, which includes information about both the original exception and the reason why it occurred.
 - in this example, if an `IOException` occurs, we wrap it in a new `RuntimeException` and pass the original exception as its cause. When the `RuntimeException` is thrown, it includes information about the original exception and the reason why it occurred. This can be useful for debugging and troubleshooting issues in a system.
@@ -825,4 +825,41 @@
 >     throw new RuntimeException("Error occurred while processing data", e);
 > }
 > ```
+###### Day 32 [↑](#today-i-learned-in-java- "Back to Top")
+- the `assert` keyword takes a boolean expression as an argument and throws an `AssertionError` if the expression evaluates to `false`. If the expression is `true`, the program continues to execute normally.
+> ```java
+> public int divide(int dividend, int divisor) {
+>     assert divisor != 0 : "Divisor cannot be zero";
+>     return dividend / divisor;
+> }
+> ```
+- `assert` statements should not be used for program logic or error handling that are essential for the correct functioning of the program. Instead, they should be used as a tool for testing and debugging during development.
+- assertions can be enabled or disabled (default) at class or package level by using `-ea`/`-enableassertions` or `-da`/`-disableassertions` flags respectively.
+> ```bash
+> java -ea:exceptions.assertions.A exceptions.assertions.A
+> java -ea -da:exceptions.assertions.D exceptions.assertions.A   # enabled for every class except assertions in D
+> java -ea -da:exceptions.assertions... exceptions.assertions.A  # enabled for every class except classes in the (sub)packages
+> ```
+- the _Collections Framework_ can be divided into two parts as follows. All the implementations below are `Serializable`, `Cloneable`, most allow `null` and none of them are `Synchronized` i.e., they can be accessed by multiple threads at the same time.
+> ```plaintext
+>                 Collection                 Map
+>                     ▲                       ▲
+>          ┌──────────┬──────────┐            │
+>          │          │          │            │
+>         List       Set       Queue      SortedMap
+>          ▲          ▲          ▲            ▲
+> ┌────────┘          │          │        ┌───┘
+> │               SortedSet    Deque      │
+> ├─ArrayList         ▲          ▲        ├─HashMap
+> │              ┌────┘      ┌───┘        │
+> └─LinkedList   │           │            ├─TreeMap
+>                ├─HashSet   ├─ArrayDeque │
+>                │           │            └─LinkedHashMap
+>                ├─TreeSet   └─LinkedList
+>                │
+>                └─LinkedHashSet
+> ```
+- `Vector`, `Stack` and `Hashtable` are legacy implementations which support synchronization, however it is recommended to not use them anymore as synchronization slows things down, instead use `ArrayList`, `ArrayDeque` and `HashMap` respectively.
+- `Collection` has various sub-interfaces but it has only one direct sub-class i.e., `AbstractCollection` which provides the skeletal implementation of it.
+- `Collection` extends `java.lang.Iterable` which enables any of its objects to be used in for-each loops. `Iterable` is an `interface` which has only one `abstract` method called `iterator()`, which the sub-class has to implement.
 </samp>
