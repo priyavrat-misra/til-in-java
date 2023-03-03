@@ -36,7 +36,8 @@
 <a href="#day-29-">29</a> •
 <a href="#day-30-">30</a> •
 <a href="#day-31-">31</a> •
-<a href="#day-32-">32</a>
+<a href="#day-32-">32</a> •
+<a href="#day-33-">33</a>
 </details>
 
 ###### Day 00 [↑](#today-i-learned-in-java- "Back to Top")
@@ -798,7 +799,7 @@
 >     } catch (IOException e) { ... }
 > }
 > ```
-- "try with resources" block is a feature introduced in _Java 7_ that simplifies the process of working with resources that must be closed after use, such as files, streams, and database connections. It allows the developer to declare and initialize the resource inside the try statement, and the resource will be automatically closed when the block exits, regardless of whether an exception is thrown. The resource created within `try` parenthesis is implicitly `final`, so it can not be reassigned within the `try` block.
+- "try with resources" block is a feature introduced in _Java 7_ that simplifies the process of working with resources that must be closed after use, such as files, streams, and database connections. It allows the developer to declare and initialize the resource inside the `try` statement, and the resource will be automatically closed when the block exits, regardless of whether an exception is thrown. The resource created within `try` parenthesis is implicitly `final`, so it can not be reassigned within the `try` block.
 - multiple resources can also be created within the `try` parenthesis and must be separated using <kbd>;</kbd>. The resources are created sequentially, once the try-catch block is evaluated the resources are closed in the reverse order. 
 > ```java
 > try (FileInputStream in = new FileInputStream(filename);
@@ -861,5 +862,98 @@
 > ```
 - `Vector`, `Stack` and `Hashtable` are legacy implementations which support synchronization, however it is recommended to not use them anymore as synchronization slows things down, instead use `ArrayList`, `ArrayDeque` and `HashMap` respectively.
 - `Collection` has various sub-interfaces but it has only one direct sub-class i.e., `AbstractCollection` which provides the skeletal implementation of it.
-- `Collection` extends `java.lang.Iterable` which enables any of its objects to be used in for-each loops. `Iterable` is an `interface` which has only one `abstract` method called `iterator()`, which the sub-class has to implement.
+###### Day 33 [↑](#today-i-learned-in-java- "Back to Top")
+- the `Collection` interface includes several methods common to all collections which can be broadly classified into 3 categories:
+  1. Basic Operations
+  2. Bulk Operations
+  3. Array Operations
+> ```java
+> public interface Collection<E> extends Iterable<E> {
+>     // Basic Operations
+>     boolean add(E element);                      // optional
+>     boolean remove(Object element);              // optional
+>     boolean contains(Object element);
+>     int size();
+>     boolean isEmpty();
+>     Iterator<E> iterator();
+> 
+>     // Bulk Operations
+>     boolean addAll(Collection <? extends E> c);  // optional
+>     boolean removeAll(Collection<?> c);          // optional
+>     boolean retainAll(Collection<?> c);          // optional
+>     boolean containsAll(Collection<?> c);
+>     void clear();                                // optional
+> 
+>     // Array Operations
+>     Object[] toArray();
+>     <T> T[] toArray(T[] a);
+>     // e.g., String[] a = c.toArray(new String[0]);
+> }
+> // Note: "optional" means the subclass need not support it
+> // i.e., it will define an empty method that will throw an UnsupportedOperationException.
+> ```
+- the `List` interface is useful when sequence/positioning matters. It models a resizable linear array with indexed access which can have duplicates.
+> ```java
+> public interface List<E> extends Collections<E> {
+>     // Positional Operations
+>     E get(int index);
+>     E set(int index, E element);  // optional
+>     void add(int index, E element);  // optional
+>     boolean add(E element);  // optional
+>     E remove(int index);  // optional
+>     boolean addAll(int index, Collection<? extends E> c);  // optional
+> 
+>     // Searching Operations
+>     int indexOf(Object o);
+>     int lastIndexOf(Object o);
+> 
+>     // Iteration Operations
+>     ListIterator<E> listiterator();
+>     ListIterator<E> listiterator(int index);
+> 
+>     // Range-view Operations
+>     List<E> subList(int fromIndex, int toIndex);
+> }
+> ```
+- `ArrayList` is an array implementation of the `List` interface.
+> ```java
+> public class ArrayList<E> 
+> extends AbstractList<E>
+> implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+> ```
+- the size of the internal array in `ArrayList` increases by 50% when it is full by default. This means that if the current capacity of the `ArrayList` is N, then the new capacity will be N + (N/2). The capacity of an `ArrayList` can be increased by using the `ensureCapacity()` method, useful when adding a large number of elements as it may reduce the amount of incremental reallocation.
+- during iteration using a for-each loop, removing an element will lead to `ConcurrentModificationException`.
+> ```java
+> for (int element : list) {
+>     if (element == 9)
+>         list.remove(9);
+> }
+> ```
+- `Collection` extends `java.lang.Iterable` which enables any of its objects to be used in for-each loops. `Iterable` is an `interface` which has only one `abstract` method called `iterator()`, which the sub-class has to implement. Internally for-each invokes this method to iterate the elements of the `Collection`.
+> ```java
+> public interface Iterable<T> {
+>     Iterator<T> iterator();
+>     default void forEach(Consumer<? super T> action) { ... }
+>     default Spliterator<T> spliterator() { ... }
+> }
+> ```
+- `ArrayList` has a nested class which implements `Iterator`, an instance of that nested class is returned when `iterator()` is invoked.
+> ```java
+> public interface Iterator<E> {
+>     boolean hasNext();
+>     E next();
+>     void remove();
+>     default void forEachRemaining(Consumer<? super T> action) { ... }
+> }
+> ```
+- It allows us to remove an element during iteration.
+> ```java
+> Iterator<Integer> it = list.iterator();
+> while (it.hasNext()) {
+>     int element = it.next();
+>     if (element == 9)
+>         it.remove();
+> }
+> list.forEach(System.out::println);
+> ```
 </samp>

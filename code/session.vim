@@ -23,6 +23,7 @@ tabnew
 tabnew
 tabnew
 tabnew
+tabnew
 tabrewind
 edit ~/til-in-java/README.md
 set splitbelow splitright
@@ -37,27 +38,27 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 31 + 20) / 41)
-exe '2resize ' . ((&lines * 6 + 20) / 41)
+exe '1resize ' . ((&lines * 30 + 20) / 41)
+exe '2resize ' . ((&lines * 7 + 20) / 41)
 argglobal
-let s:l = 864 - ((26 * winheight(0) + 15) / 31)
+let s:l = 957 - ((24 * winheight(0) + 15) / 30)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-864
-normal! 0247|
+957
+normal! 036|
 wincmd w
 argglobal
-terminal ++curwin ++cols=172 ++rows=6 
-let s:l = 1 - ((0 * winheight(0) + 3) / 6)
+terminal ++curwin ++cols=172 ++rows=7 
+let s:l = 1 - ((0 * winheight(0) + 3) / 7)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
 normal! 0
 wincmd w
-exe '1resize ' . ((&lines * 31 + 20) / 41)
-exe '2resize ' . ((&lines * 6 + 20) / 41)
+exe '1resize ' . ((&lines * 30 + 20) / 41)
+exe '2resize ' . ((&lines * 7 + 20) / 41)
 tabnext
 edit Grader.java
 set splitbelow splitright
@@ -661,10 +662,46 @@ exe s:l
 normal! zt
 1
 normal! 0
+tabnext
+edit collections/ListDemo.java
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 95 + 86) / 172)
+exe 'vert 2resize ' . ((&columns * 76 + 86) / 172)
+argglobal
+let s:l = 79 - ((30 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+79
+normal! 021|
+wincmd w
+argglobal
+terminal ++curwin ++cols=76 ++rows=38 
+let s:l = 1 - ((0 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+exe 'vert 1resize ' . ((&columns * 95 + 86) / 172)
+exe 'vert 2resize ' . ((&columns * 76 + 86) / 172)
 tabnext 1
 set stal=1
-badd +827 ~/til-in-java/README.md
+badd +864 ~/til-in-java/README.md
 badd +1 Grader.java
+badd +1 exceptions/assertions/A.java
 badd +1 oops/polymorphism/User.java
 badd +1 oops/inheritance/p1/A1.java
 badd +1 oops/abstraction/AbstractSuperclass.java
@@ -674,6 +711,9 @@ badd +1 oops/interfaces/A.java
 badd +1 exceptions/p1/Main.java
 badd +1 exceptions/TryWithResources.java
 badd +1 GraderTest.java
+badd +1 exceptions/assertions/B.java
+badd +1 exceptions/assertions/p2/C.java
+badd +1 exceptions/assertions/D.java
 badd +9 oops/polymorphism/UserTest.java
 badd +1 oops/polymorphism/Staff.java
 badd +1 oops/polymorphism/Editor.java
@@ -694,10 +734,7 @@ badd +1 oops/interfaces/X.java
 badd +1 oops/interfaces/C.java
 badd +1 oops/interfaces/Main.java
 badd +1 exceptions/p1/HttpConnect.java
-badd +0 exceptions/assertions/A.java
-badd +0 exceptions/assertions/B.java
-badd +0 exceptions/assertions/p2/C.java
-badd +0 exceptions/assertions/D.java
+badd +0 collections/ListDemo.java
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
