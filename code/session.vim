@@ -41,12 +41,12 @@ set winwidth=1
 exe '1resize ' . ((&lines * 30 + 20) / 41)
 exe '2resize ' . ((&lines * 7 + 20) / 41)
 argglobal
-let s:l = 957 - ((24 * winheight(0) + 15) / 30)
+let s:l = 1003 - ((26 * winheight(0) + 15) / 30)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-957
-normal! 036|
+1003
+normal! 03|
 wincmd w
 argglobal
 terminal ++curwin ++cols=172 ++rows=7 
@@ -666,6 +666,14 @@ tabnext
 edit collections/ListDemo.java
 set splitbelow splitright
 wincmd _ | wincmd |
+split
+1wincmd k
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd w
+wincmd _ | wincmd |
 vsplit
 1wincmd h
 wincmd w
@@ -676,30 +684,60 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 95 + 86) / 172)
-exe 'vert 2resize ' . ((&columns * 76 + 86) / 172)
+exe '1resize ' . ((&lines * 18 + 20) / 41)
+exe 'vert 1resize ' . ((&columns * 86 + 86) / 172)
+exe '2resize ' . ((&lines * 18 + 20) / 41)
+exe 'vert 2resize ' . ((&columns * 85 + 86) / 172)
+exe '3resize ' . ((&lines * 19 + 20) / 41)
+exe 'vert 3resize ' . ((&columns * 65 + 86) / 172)
+exe '4resize ' . ((&lines * 19 + 20) / 41)
+exe 'vert 4resize ' . ((&columns * 106 + 86) / 172)
 argglobal
-let s:l = 79 - ((30 * winheight(0) + 19) / 38)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-79
-normal! 021|
-wincmd w
-argglobal
-terminal ++curwin ++cols=76 ++rows=38 
-let s:l = 1 - ((0 * winheight(0) + 19) / 38)
+let s:l = 1 - ((0 * winheight(0) + 9) / 18)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 95 + 86) / 172)
-exe 'vert 2resize ' . ((&columns * 76 + 86) / 172)
+argglobal
+if bufexists("CustomLinkedList.java") | buffer CustomLinkedList.java | else | edit CustomLinkedList.java | endif
+let s:l = 1 - ((0 * winheight(0) + 9) / 18)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+argglobal
+if bufexists("collections/IteratorDemo.java") | buffer collections/IteratorDemo.java | else | edit collections/IteratorDemo.java | endif
+let s:l = 1 - ((0 * winheight(0) + 9) / 19)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+argglobal
+if bufexists("collections/ListIteratorDemo.java") | buffer collections/ListIteratorDemo.java | else | edit collections/ListIteratorDemo.java | endif
+let s:l = 33 - ((11 * winheight(0) + 9) / 19)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+33
+normal! 0
+wincmd w
+exe '1resize ' . ((&lines * 18 + 20) / 41)
+exe 'vert 1resize ' . ((&columns * 86 + 86) / 172)
+exe '2resize ' . ((&lines * 18 + 20) / 41)
+exe 'vert 2resize ' . ((&columns * 85 + 86) / 172)
+exe '3resize ' . ((&lines * 19 + 20) / 41)
+exe 'vert 3resize ' . ((&columns * 65 + 86) / 172)
+exe '4resize ' . ((&lines * 19 + 20) / 41)
+exe 'vert 4resize ' . ((&columns * 106 + 86) / 172)
 tabnext 1
 set stal=1
-badd +864 ~/til-in-java/README.md
+badd +959 ~/til-in-java/README.md
 badd +1 Grader.java
 badd +1 exceptions/assertions/A.java
 badd +1 oops/polymorphism/User.java
@@ -710,6 +748,7 @@ badd +1 binding/p2/Main.java
 badd +1 oops/interfaces/A.java
 badd +1 exceptions/p1/Main.java
 badd +1 exceptions/TryWithResources.java
+badd +1 collections/ListDemo.java
 badd +1 GraderTest.java
 badd +1 exceptions/assertions/B.java
 badd +1 exceptions/assertions/p2/C.java
@@ -734,7 +773,9 @@ badd +1 oops/interfaces/X.java
 badd +1 oops/interfaces/C.java
 badd +1 oops/interfaces/Main.java
 badd +1 exceptions/p1/HttpConnect.java
-badd +0 collections/ListDemo.java
+badd +2 collections/IteratorDemo.java
+badd +1 CustomLinkedList.java
+badd +0 collections/ListIteratorDemo.java
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif

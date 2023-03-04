@@ -982,10 +982,11 @@
 > 
 >     // Used to remove an element. Implement only if needed
 >     public void remove() {
->         // Default throws UnsupportedOperationException.
+>         // default throws UnsupportedOperationException.
 >     }
 > }
-> // Note: The Iterator class can also be implemented as an inner class of the Data Structure class as it won’t be used elsewhere.
+> // Note: the Iterator class can also be implemented as an inner class
+> // of the Data Structure class as it won’t be used elsewhere.
 > ```
 - `ListIterator` extends `Iterator` and provides additional functionality. With `Iterator` we can only remove elements but with `ListIterator` we can additionally add and replace elements. Moreover, we can both iterate both forwards as well as backwards.
 > ```java
