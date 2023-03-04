@@ -1,5 +1,9 @@
 package collections;
 
+	static void add(Integer i) {
+		
+	}
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -69,14 +73,6 @@ public class ListDemo {
 		// 	if (element == 9)
 		// 		list1.remove(Integer.valueOf(element));
 		// }
-
-		Iterator<Integer> it = list1.iterator();
-		while (it.hasNext()) {
-			int element = it.next();
-			if (element == 9)
-				it.remove();
-		}
-		list1.forEach(System.out::println);  // method reference
 	}
 
 	public static void main(String[] args) {

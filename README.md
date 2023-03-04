@@ -37,7 +37,8 @@
 <a href="#day-30-">30</a> •
 <a href="#day-31-">31</a> •
 <a href="#day-32-">32</a> •
-<a href="#day-33-">33</a>
+<a href="#day-33-">33</a> •
+<a href="#day-34-">34</a>
 </details>
 
 ###### Day 00 [↑](#today-i-learned-in-java- "Back to Top")
@@ -894,13 +895,13 @@
 > ```
 - the `List` interface is useful when sequence/positioning matters. It models a resizable linear array with indexed access which can have duplicates.
 > ```java
-> public interface List<E> extends Collections<E> {
+> public interface List<E> extends Collection<E> {
 >     // Positional Operations
 >     E get(int index);
->     E set(int index, E element);  // optional
->     void add(int index, E element);  // optional
->     boolean add(E element);  // optional
->     E remove(int index);  // optional
+>     E set(int index, E element);                           // optional
+>     void add(int index, E element);                        // optional
+>     boolean add(E element);                                // optional
+>     E remove(int index);                                   // optional
 >     boolean addAll(int index, Collection<? extends E> c);  // optional
 > 
 >     // Searching Operations
@@ -955,5 +956,49 @@
 >         it.remove();
 > }
 > list.forEach(System.out::println);
+> ```
+###### Day 34 [↑](#today-i-learned-in-java- "Back to Top")
+- to implement an iterable data structure ([example](./code/collections/CustomLinkedList.java)), we need to:
+  1. implement `Iterable` interface along with its methods in the said Data Structure.
+  2. create an Iterator class which implements `Iterator` interface and corresponding methods.
+> ```java
+> class CustomDataStructure implements Iterable<> {
+>     // code for data structure
+>     public Iterator<> iterator() {
+>         return new CustomIterator<>(this);
+>     }
+> }
+> class CustomIterator<> implements Iterator<> {
+>     // constructor
+>     CustomIterator<>(CustomDataStructure obj) {
+>         // initialize cursor
+>     }
+> 	
+>     // Checks if the next element exists
+>     public boolean hasNext() { ... }
+> 
+>     // moves the cursor/iterator to next element
+>     public T next() { ... }
+> 
+>     // Used to remove an element. Implement only if needed
+>     public void remove() {
+>         // Default throws UnsupportedOperationException.
+>     }
+> }
+> // Note: The Iterator class can also be implemented as an inner class of the Data Structure class as it won’t be used elsewhere.
+> ```
+- `ListIterator` extends `Iterator` and provides additional functionality. With `Iterator` we can only remove elements but with `ListIterator` we can additionally add and replace elements. Moreover, we can both iterate both forwards as well as backwards.
+> ```java
+> public interface ListIterator<E> extends Iterator<E> {
+>     void add(E e);
+>     void set(E e);
+>     void remove();
+>     boolean hasNext();
+>     E next();
+>     boolean hasPrevious();
+>     E previous();
+>     int nextIndex();
+>     int previousIndex();
+> }
 > ```
 </samp>
