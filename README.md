@@ -865,7 +865,7 @@
 - `Vector`, `Stack` and `Hashtable` are legacy implementations which support synchronization, however it is recommended to not use them anymore as synchronization slows things down, instead use `ArrayList`, `ArrayDeque` and `HashMap` respectively.
 - `Collection` has various sub-interfaces but it has only one direct sub-class i.e., `AbstractCollection` which provides the skeletal implementation of it.
 ###### Day 33 [↑](#today-i-learned-in-java- "Back to Top")
-- the `[java.util.Collection](https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html)` interface includes several methods common to all collections which can be broadly classified into 3 categories:
+- the [`java.util.Collection`](https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html) interface includes several methods common to all collections which can be broadly classified into 3 categories:
   1. Basic Operations
   2. Bulk Operations
   3. Array Operations
@@ -894,7 +894,7 @@
 > // Note: "optional" means the subclass need not support it
 > // i.e., it will define an empty method that will throw an UnsupportedOperationException.
 > ```
-- the `[java.util.List](https://docs.oracle.com/javase/8/docs/api/java/util/List.html)` interface is useful when sequence/positioning matters. It models a resizable linear array with indexed access which can have duplicates.
+- the [`java.util.List`](https://docs.oracle.com/javase/8/docs/api/java/util/List.html) interface is useful when sequence/positioning matters. It models a resizable linear array with indexed access which can have duplicates.
 > ```java
 > public interface List<E> extends Collection<E> {
 >     // Positional Operations
@@ -917,7 +917,7 @@
 >     List<E> subList(int fromIndex, int toIndex);
 > }
 > ```
-- `[java.util.ArrayList](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html)` is an array implementation of the `List` interface.
+- [`java.util.ArrayList`](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html) is an array implementation of the `List` interface.
 > ```java
 > public class ArrayList<E> 
 > extends AbstractList<E>
@@ -931,7 +931,7 @@
 >         list.remove(9);
 > }
 > ```
-- `Collection` extends `[java.lang.Iterable](https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html)` which enables any of its objects to be used in for-each loops. `Iterable` is an `interface` which has only one `abstract` method called `iterator()`, which the sub-class has to implement. Internally for-each invokes this method to iterate the elements of the `Collection`.
+- `Collection` extends [`java.lang.Iterable`](https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html) which enables any of its objects to be used in for-each loops. `Iterable` is an `interface` which has only one `abstract` method called `iterator()`, which the sub-class has to implement. Internally for-each invokes this method to iterate the elements of the `Collection`.
 > ```java
 > public interface Iterable<T> {
 >     Iterator<T> iterator();
@@ -939,7 +939,7 @@
 >     default Spliterator<T> spliterator() { ... }
 > }
 > ```
-- `ArrayList` has a nested class which implements `[Iterator](https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html)`, an instance of that nested class is returned when `iterator()` is invoked.
+- `ArrayList` has a nested class which implements [`java.util.Iterator`](https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html), an instance of that nested class is returned when `iterator()` is invoked.
 > ```java
 > public interface Iterator<E> {
 >     boolean hasNext();
@@ -1004,13 +1004,13 @@
 > }
 > ```
 ###### Day 35 [↑](#today-i-learned-in-java- "Back to Top")
-- `[java.util.LinkedList](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html)` is a doubly linked list implementation of `List` & `Deque` interfaces.
+- [`java.util.LinkedList`](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html) is a doubly linked list implementation of `List` & `Deque` interfaces.
 > ```java
 > public class LinkedList<E>
 > extends AbstractSequentialList<E>
 > implements List<E>, Deque<E>, Cloneable, Serializable
 > ```
-- `[java.util.Queue](https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html)` is a collection designed for holding elements prior to processing. Besides basic `Collection` operations, queues provide additional insertion, extraction, and inspection operations. Each of these methods exists in two forms: one throws an exception if the operation fails, the other returns a special value (either null or false, depending on the operation). The latter form of the insert operation is designed specifically for use with capacity-restricted `Queue` implementations.
+- [`java.util.Queue`](https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html) is a collection designed for holding elements prior to processing. Besides basic `Collection` operations, queues provide additional insertion, extraction, and inspection operations. Each of these methods exists in two forms: one throws an exception if the operation fails, the other returns a special value (either null or false, depending on the operation). The latter form of the insert operation is designed specifically for use with capacity-restricted `Queue` implementations.
 > ```java
 > public interface Queue<E>
 > extends Collection<E>
@@ -1024,7 +1024,7 @@
 > │ Examine │ element()        │ peek() ~ null if queue is empty │
 > └─────────┴──────────────────┴─────────────────────────────────┘
 > ```
-- `[java.util.Deque](https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html)` is a linear collection that supports element insertion and removal at both ends. Methods are provided to insert, remove, and examine the element. Each of these methods exists in two forms: one throws an exception if the operation fails, the other returns a special value (either `null` or `false`, depending on the operation). The latter form of the insert operation is designed specifically for use with capacity-restricted `Deque` implementations.
+- [`java.util.Deque`](https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html) is a linear collection that supports element insertion and removal at both ends. Methods are provided to insert, remove, and examine the element. Each of these methods exists in two forms: one throws an exception if the operation fails, the other returns a special value (either `null` or `false`, depending on the operation). The latter form of the insert operation is designed specifically for use with capacity-restricted `Deque` implementations.
 > ```java
 > public interface Deque<E>
 > extends Queue<E>
@@ -1052,7 +1052,7 @@
 > │ peek()       │ peekFirst()             │
 > └──────────────┴─────────────────────────┘
 > ```
-- `[java.util.ArrayDeque](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayDeque.html)` is a resizable-array implementation of the Deque interface. Array deques have no capacity restrictions; they grow as necessary to support usage.
+- [`java.util.ArrayDeque`](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayDeque.html) is a resizable-array implementation of the Deque interface. Array deques have no capacity restrictions; they grow as necessary to support usage.
 > ```java
 > public class ArrayDeque<E>
 > extends AbstractCollection<E>
@@ -1063,6 +1063,6 @@
   2. `ArrayDeque(int)`
   3. `ArrayDeque(Collection)`
 - `ArrayDeque` is faster than `LinkedList` as a queue.
-- unlike `List`, `[java.util.Set](https://docs.oracle.com/javase/8/docs/api/java/util/Set.html)` interface does not add any new methods on top of what it inherits from the `Collection` interface. However due to the fact that it does not allow duplicates, it places some additional requirements on some of the inherited methods and also the constructors.
-- `[java.util.HashSet](https://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html)` is a hash table based implementation of the `Set` interface. Internally, it uses a `HashMap`, but since `HashSet` stores only individual objects those objects will be stored as keys while an empty object (an instance of the `Object` class) will be stored as a value. It allows one `null` value.
+- unlike `List`, [`java.util.Set`](https://docs.oracle.com/javase/8/docs/api/java/util/Set.html) interface does not add any new methods on top of what it inherits from the `Collection` interface. However due to the fact that it does not allow duplicates, it places some additional requirements on some of the inherited methods and also the constructors.
+- [`java.util.HashSet`](https://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html) is a hash table based implementation of the `Set` interface. Internally, it uses a `HashMap`, but since `HashSet` stores only individual objects those objects will be stored as keys while an empty object (an instance of the `Object` class) will be stored as a value. It allows one `null` value.
 </samp>
