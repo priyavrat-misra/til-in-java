@@ -41,12 +41,12 @@ set winwidth=1
 exe '1resize ' . ((&lines * 30 + 20) / 41)
 exe '2resize ' . ((&lines * 7 + 20) / 41)
 argglobal
-let s:l = 1003 - ((26 * winheight(0) + 15) / 30)
+let s:l = 1067 - ((21 * winheight(0) + 15) / 30)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1003
-normal! 03|
+1067
+normal! 0384|
 wincmd w
 argglobal
 terminal ++curwin ++cols=172 ++rows=7 
@@ -737,7 +737,7 @@ exe '4resize ' . ((&lines * 19 + 20) / 41)
 exe 'vert 4resize ' . ((&columns * 106 + 86) / 172)
 tabnext 1
 set stal=1
-badd +959 ~/til-in-java/README.md
+badd +1003 ~/til-in-java/README.md
 badd +1 Grader.java
 badd +1 exceptions/assertions/A.java
 badd +1 oops/polymorphism/User.java
@@ -773,9 +773,9 @@ badd +1 oops/interfaces/X.java
 badd +1 oops/interfaces/C.java
 badd +1 oops/interfaces/Main.java
 badd +1 exceptions/p1/HttpConnect.java
-badd +2 collections/IteratorDemo.java
 badd +1 CustomLinkedList.java
-badd +0 collections/ListIteratorDemo.java
+badd +2 collections/IteratorDemo.java
+badd +1 collections/ListIteratorDemo.java
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
