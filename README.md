@@ -39,7 +39,8 @@
 <a href="#day-32-">32</a> •
 <a href="#day-33-">33</a> •
 <a href="#day-34-">34</a> •
-<a href="#day-35-">35</a>
+<a href="#day-35-">35</a> •
+<a href="#day-36-">36</a>
 </details>
 
 ###### Day 00 [↑](#today-i-learned-in-java- "Back to Top")
@@ -845,22 +846,33 @@
 > ```
 - the _Collections Framework_ can be divided into two parts as follows. All the implementations below are `Serializable`, `Cloneable`, most allow `null` and none of them are `Synchronized` i.e., they can be accessed by multiple threads at the same time.
 > ```plaintext
->                 Collection                 Map
->                     ▲                       ▲
->          ┌──────────┬──────────┐            │
->          │          │          │            │
->         List       Set       Queue      SortedMap
->          ▲          ▲          ▲            ▲
-> ┌────────┘          │          │        ┌───┘
-> │               SortedSet    Deque      │
-> ├─ArrayList         ▲          ▲        ├─HashMap
-> │              ┌────┘      ┌───┘        │
-> └─LinkedList   │           │            ├─TreeMap
->                ├─HashSet   ├─ArrayDeque │
->                │           │            └─LinkedHashMap
->                ├─TreeSet   └─LinkedList
->                │
->                └─LinkedHashSet
+>                                              ┌──────────┐
+>                ┌─────────────────────────────┤Collection├───────────────────────┐
+>                │                             └────┬─────┘                       │
+>                │                                  │                             │
+>              ┌─▼─┐                              ┌─▼──┐                       ┌──▼──┐
+>      ┌───────┤Set│◄─────────┐             ┌────►│List│◄──────┐               │Queue│
+>      │       └──▲┘          │             │     └──▲─┘       │           ┌───┴────▲┘
+> ┌────▼────┐     │           │             │        │         │           │        │
+> │SortedSet│     │           │             │        │         │           │        │
+> └────┬────┘     │           │             │        │         │        ┌──▼──┐     │
+>      │       HashSet   LinkedHashSet  ArrayList  Vector  LinkedList──►│Deque│  PriorityQueue
+> ┌────▼───────┐                                                        └──▲──┘
+> │NavigableSet│                                                           │
+> └────▲───────┘                                                           │
+>      │                                                                   │
+>      │                                                                   │
+>   TreeSet                                                            ArrayDeque
+> ```
+> ```plaintext
+>               ┌───┐
+>     ┌────────►│Map├────────┐
+>     │         └▲─▲┘   ┌────▼────┐
+>     │          │ │    │SortedMap│◄────┐
+>     │          │ │    └─────────┘     │
+>     │          │ │                    │
+>     │          │ └───────────┐        │
+> HashTable  LinkedHashMap  HashMap  TreeMap
 > ```
 - `Vector`, `Stack` and `Hashtable` are legacy implementations which support synchronization, however it is recommended to not use them anymore as synchronization slows things down, instead use `ArrayList`, `ArrayDeque` and `HashMap` respectively.
 - `Collection` has various sub-interfaces but it has only one direct sub-class i.e., `AbstractCollection` which provides the skeletal implementation of it.
@@ -1065,4 +1077,21 @@
 - `ArrayDeque` is faster than `LinkedList` as a queue.
 - unlike `List`, [`java.util.Set`](https://docs.oracle.com/javase/8/docs/api/java/util/Set.html) interface does not add any new methods on top of what it inherits from the `Collection` interface. However due to the fact that it does not allow duplicates, it places some additional requirements on some of the inherited methods and also the constructors.
 - [`java.util.HashSet`](https://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html) is a hash table based implementation of the `Set` interface. Internally, it uses a `HashMap`, but since `HashSet` stores only individual objects those objects will be stored as keys while an empty object (an instance of the `Object` class) will be stored as a value. It allows one `null` value.
+###### Day 36 [↑](#today-i-learned-in-java- "Back to Top")
+- according to _Effective Java_, we should always override `hashCode()` when we override `equals()`. Only overriding `hashCode()` is not helpful from preventing a duplicate from getting added to a `HashSet` and only overriding `equals()` doesn't mean both will end up in the same bucket ([example](./code/collections/HashSetDemo.java)).
+- for `null` keys, the `hasCode` is always 0.
+- [`java.util.LinkedHashSet`](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashSet.html) is an implementation of the `Set` interface and it is similar to `HashSet` in that it stores elements in a hash table. However, `LinkedHashSet` also maintains a doubly linked list of the elements in insertion order. This means that the order in which elements are added to the set is preserved, and it can be traversed in that order using the iterator.
+> ```java
+> public class LinkedHashSet<E>
+> extends HashSet<E>
+> implements Set<E>, Cloneable, Serializable
+> ```
+- the `LinkedHashSet` class also overrides the `add()` and `addAll()` methods of the `HashSet` class to maintain the insertion order while adding elements to the set. When an element is added to the set, it is first hashed to determine its bucket, and then it is inserted at the end of the bucket's linked list. If the element is already in the set, it is moved to the end of the list.
+- [java.util.SortedSet](https://docs.oracle.com/javase/8/docs/api/java/util/SortedSet.html) and [`java.util.NavigableSet`](https://docs.oracle.com/javase/8/docs/api/java/util/NavigableSet.html) define sets that are sorted in a specific order defined by a comparator or the natural ordering of elements.
+- the `SortedSet` interface provides additional methods that allow for accessing and manipulating elements based on their position in the set, such as `subSet()`, `headSet()`, and `tailSet()`.
+- the `NavigableSet` interface extends the `SortedSet` interface and provides additional methods for navigating the set based on the ordering of the elements, such as `lower()`, `floor()`, `ceiling()`, and `higher()`. These methods return elements that are strictly less than, less than or equal to, greater than or equal to, and strictly greater than a given element, respectively.
+- both `SortedSet` and `NavigableSet` are implemented by the [`java.util.TreeSet`](https://docs.oracle.com/javase/8/docs/api/java/util/TreeSet.html) class, which uses a _red-black tree_ to maintain the elements in sorted order. This allows for efficient operations on the set, such as finding the smallest or largest element, or finding elements within a specific range.
+- the [`java.lang.Comparable`](https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html) interface is used to provide a default natural sorting order for a class. A class that implements the `Comparable` interface must implement `compareTo()`, which compares the current object with the specified object and returns a negative integer, zero, or a positive integer if the current object is less than, equal to, or greater than the specified object, respectively. The `compareTo` method is used by sorting algorithms like `Arrays.sort()` and `Collections.sort()`.
+- the [`java.util.Comparator`](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html) interface is used to provide a custom sorting order for a class. A class that implements the `Comparator` interface must implement `compare()`, which compares two objects and returns a negative integer, zero, or a positive integer if the first object is less than, equal to, or greater than the second object, respectively. The `compare` method is used as an argument to sorting algorithms like `Arrays.sort()` and `Collections.sort()` to provide a custom sorting order.
+- the difference between `Comparable` and `Comparator` is that `Comparable` provides a natural ordering of objects and is implemented by the object being sorted, whereas Comparator provides an external ordering of objects and is implemented by a separate class ([example](./code/collections/TreeSetDemo.java)).
 </samp>

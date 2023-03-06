@@ -24,6 +24,7 @@ tabnew
 tabnew
 tabnew
 tabnew
+tabnew
 tabrewind
 edit ~/til-in-java/README.md
 set splitbelow splitright
@@ -38,27 +39,27 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 30 + 20) / 41)
-exe '2resize ' . ((&lines * 7 + 20) / 41)
+exe '1resize ' . ((&lines * 31 + 20) / 41)
+exe '2resize ' . ((&lines * 6 + 20) / 41)
 argglobal
-let s:l = 1067 - ((21 * winheight(0) + 15) / 30)
+let s:l = 1097 - ((13 * winheight(0) + 15) / 31)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1067
-normal! 0384|
+1097
+normal! 0
 wincmd w
 argglobal
-terminal ++curwin ++cols=172 ++rows=7 
-let s:l = 1 - ((0 * winheight(0) + 3) / 7)
+terminal ++curwin ++cols=172 ++rows=6 
+let s:l = 1 - ((0 * winheight(0) + 3) / 6)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
 normal! 0
 wincmd w
-exe '1resize ' . ((&lines * 30 + 20) / 41)
-exe '2resize ' . ((&lines * 7 + 20) / 41)
+exe '1resize ' . ((&lines * 31 + 20) / 41)
+exe '2resize ' . ((&lines * 6 + 20) / 41)
 tabnext
 edit Grader.java
 set splitbelow splitright
@@ -735,9 +736,44 @@ exe '3resize ' . ((&lines * 19 + 20) / 41)
 exe 'vert 3resize ' . ((&columns * 65 + 86) / 172)
 exe '4resize ' . ((&lines * 19 + 20) / 41)
 exe 'vert 4resize ' . ((&columns * 106 + 86) / 172)
+tabnext
+edit collections/HashSetDemo.java
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 85 + 86) / 172)
+exe 'vert 2resize ' . ((&columns * 86 + 86) / 172)
+argglobal
+let s:l = 1 - ((0 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+argglobal
+if bufexists("collections/TreeSetDemo.java") | buffer collections/TreeSetDemo.java | else | edit collections/TreeSetDemo.java | endif
+let s:l = 1 - ((0 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+exe 'vert 1resize ' . ((&columns * 85 + 86) / 172)
+exe 'vert 2resize ' . ((&columns * 86 + 86) / 172)
 tabnext 1
 set stal=1
-badd +1003 ~/til-in-java/README.md
+badd +1068 ~/til-in-java/README.md
 badd +1 Grader.java
 badd +1 exceptions/assertions/A.java
 badd +1 oops/polymorphism/User.java
@@ -776,6 +812,8 @@ badd +1 exceptions/p1/HttpConnect.java
 badd +1 CustomLinkedList.java
 badd +2 collections/IteratorDemo.java
 badd +1 collections/ListIteratorDemo.java
+badd +0 collections/HashSetDemo.java
+badd +0 collections/TreeSetDemo.java
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
