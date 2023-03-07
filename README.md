@@ -40,7 +40,8 @@
 <a href="#day-33-">33</a> •
 <a href="#day-34-">34</a> •
 <a href="#day-35-">35</a> •
-<a href="#day-36-">36</a>
+<a href="#day-36-">36</a> •
+<a href="#day-37-">37</a>
 </details>
 
 ###### Day 00 [↑](#today-i-learned-in-java- "Back to Top")
@@ -851,11 +852,11 @@
 >                │                             └────┬─────┘                       │
 >                │                                  │                             │
 >              ┌─▼─┐                              ┌─▼──┐                       ┌──▼──┐
->      ┌───────┤Set│◄─────────┐             ┌────►│List│◄──────┐               │Queue│
->      │       └──▲┘          │             │     └──▲─┘       │           ┌───┴────▲┘
-> ┌────▼────┐     │           │             │        │         │           │        │
-> │SortedSet│     │           │             │        │         │           │        │
-> └────┬────┘     │           │             │        │         │        ┌──▼──┐     │
+>      ┌───────┤Set│◄─────────┐             ┌────►│List│◄──────┐           ┌───┤Queue│
+>      │       └──▲┘          │             │     └──▲─┘       │           │   └───▲─┘
+> ┌────▼────┐     │           │             │        │         │           │       │
+> │SortedSet│     │           │             │        │         │           │       │
+> └────┬────┘     │           │             │        │         │        ┌──▼──┐    │
 >      │       HashSet   LinkedHashSet  ArrayList  Vector  LinkedList──►│Deque│  PriorityQueue
 > ┌────▼───────┐                                                        └──▲──┘
 > │NavigableSet│                                                           │
@@ -868,10 +869,11 @@
 >               ┌───┐
 >     ┌────────►│Map├────────┐
 >     │         └▲─▲┘   ┌────▼────┐
->     │          │ │    │SortedMap│◄────┐
->     │          │ │    └─────────┘     │
->     │          │ │                    │
->     │          │ └───────────┐        │
+>     │          │ │    │SortedMap├─────┐
+>     │          │ │    └─────────┘┌────▼───────┐
+>     │          │ │               │NavigableMap│
+>     │          │ └───────────┐   └────▲───────┘
+>     │          │             │        │
 > HashTable  LinkedHashMap  HashMap  TreeMap
 > ```
 - `Vector`, `Stack` and `Hashtable` are legacy implementations which support synchronization, however it is recommended to not use them anymore as synchronization slows things down, instead use `ArrayList`, `ArrayDeque` and `HashMap` respectively.
@@ -1078,20 +1080,69 @@
 - unlike `List`, [`java.util.Set`](https://docs.oracle.com/javase/8/docs/api/java/util/Set.html) interface does not add any new methods on top of what it inherits from the `Collection` interface. However due to the fact that it does not allow duplicates, it places some additional requirements on some of the inherited methods and also the constructors.
 - [`java.util.HashSet`](https://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html) is a hash table based implementation of the `Set` interface. Internally, it uses a `HashMap`, but since `HashSet` stores only individual objects those objects will be stored as keys while an empty object (an instance of the `Object` class) will be stored as a value. It allows one `null` value.
 ###### Day 36 [↑](#today-i-learned-in-java- "Back to Top")
-- according to _Effective Java_, we should always override `hashCode()` when we override `equals()`. Only overriding `hashCode()` is not helpful from preventing a duplicate from getting added to a `HashSet` and only overriding `equals()` doesn't mean both will end up in the same bucket ([example](./code/collections/HashSetDemo.java)).
-- for `null` keys, the `hasCode` is always 0.
-- [`java.util.LinkedHashSet`](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashSet.html) is an implementation of the `Set` interface and it is similar to `HashSet` in that it stores elements in a hash table. However, `LinkedHashSet` also maintains a doubly linked list of the elements in insertion order. This means that the order in which elements are added to the set is preserved, and it can be traversed in that order using the iterator.
+- when we override the `equals()` method in a class, we are essentially defining a custom way to compare objects of that class for equality. If two objects are considered equal based on the `equals()` method, they should have the same hash code value as well. If the hash code values of two objects are different, then the `Collection` classes will assume that they are not equal and can potentially store both of them, leading to duplicate entries. Therefore, it is recommended to override the `hashCode()` method in a way that is consistent with the `equals()` method to avoid this problem ([example](./code/collections/HashSetDemo.java)).
+- for `null` keys, the `hasCode` is always 0.  - [`java.util.LinkedHashSet`](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashSet.html) is an implementation of the `Set` interface and it is similar to `HashSet` in that it stores elements in a hash table. However, `LinkedHashSet` also maintains a doubly linked list of the elements in insertion order. This means that the order in which elements are added to the set is preserved, and it can be traversed in that order using the iterator.
 > ```java
 > public class LinkedHashSet<E>
 > extends HashSet<E>
 > implements Set<E>, Cloneable, Serializable
 > ```
 - the `LinkedHashSet` class also overrides the `add()` and `addAll()` methods of the `HashSet` class to maintain the insertion order while adding elements to the set. When an element is added to the set, it is first hashed to determine its bucket, and then it is inserted at the end of the bucket's linked list. If the element is already in the set, it is moved to the end of the list.
-- [java.util.SortedSet](https://docs.oracle.com/javase/8/docs/api/java/util/SortedSet.html) and [`java.util.NavigableSet`](https://docs.oracle.com/javase/8/docs/api/java/util/NavigableSet.html) define sets that are sorted in a specific order defined by a comparator or the natural ordering of elements.
+- [`java.util.SortedSet`](https://docs.oracle.com/javase/8/docs/api/java/util/SortedSet.html) and [`java.util.NavigableSet`](https://docs.oracle.com/javase/8/docs/api/java/util/NavigableSet.html) define sets that are sorted in a specific order defined by a comparator or the natural ordering of elements.
 - the `SortedSet` interface provides additional methods that allow for accessing and manipulating elements based on their position in the set, such as `subSet()`, `headSet()`, and `tailSet()`.
 - the `NavigableSet` interface extends the `SortedSet` interface and provides additional methods for navigating the set based on the ordering of the elements, such as `lower()`, `floor()`, `ceiling()`, and `higher()`. These methods return elements that are strictly less than, less than or equal to, greater than or equal to, and strictly greater than a given element, respectively.
 - both `SortedSet` and `NavigableSet` are implemented by the [`java.util.TreeSet`](https://docs.oracle.com/javase/8/docs/api/java/util/TreeSet.html) class, which uses a _red-black tree_ to maintain the elements in sorted order. This allows for efficient operations on the set, such as finding the smallest or largest element, or finding elements within a specific range.
 - the [`java.lang.Comparable`](https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html) interface is used to provide a default natural sorting order for a class. A class that implements the `Comparable` interface must implement `compareTo()`, which compares the current object with the specified object and returns a negative integer, zero, or a positive integer if the current object is less than, equal to, or greater than the specified object, respectively. The `compareTo` method is used by sorting algorithms like `Arrays.sort()` and `Collections.sort()`.
 - the [`java.util.Comparator`](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html) interface is used to provide a custom sorting order for a class. A class that implements the `Comparator` interface must implement `compare()`, which compares two objects and returns a negative integer, zero, or a positive integer if the first object is less than, equal to, or greater than the second object, respectively. The `compare` method is used as an argument to sorting algorithms like `Arrays.sort()` and `Collections.sort()` to provide a custom sorting order.
 - the difference between `Comparable` and `Comparator` is that `Comparable` provides a natural ordering of objects and is implemented by the object being sorted, whereas Comparator provides an external ordering of objects and is implemented by a separate class ([example](./code/collections/TreeSetDemo.java)).
+###### Day 37 [↑](#today-i-learned-in-java- "Back to Top")
+- not all `Collection` classes come with a skeletal/abstract class which the corresponding `Collection` class extends. But all these abstract classes extend [`java.util.AbstractCollection`](https://docs.oracle.com/javase/8/docs/api/java/util/AbstractCollection.html).
+- the skeletal classes provided by Java are optional and can be used as a starting point for implementing a new collection class. However, many of the built-in collection classes do not extend the skeletal classes. For example, `ArrayList` and `LinkedList` do not extend `AbstractList`, and `HashSet` and `LinkedHashSet` do not extend `AbstractSet`.
+- unlike `Collection` interface, [`java.util.Map`](https://docs.oracle.com/javase/8/docs/api/java/util/Map.html) interface does not extend the `Iterable` interface but the elements can still be iterated using `entrySet()`.
+> ```java
+> public interface Map<K, V> {
+>     // Basic Operations
+>     V put(K key, V value);
+>     V get(Object key);
+>     V remove(Object key);
+>     boolean containsKey(Object key);
+>     boolean containsValue(Object value);
+>     int size();
+>     boolean isEmpty();
+> 
+>     // Bulk Operations
+>     void putAll(Map<? extends K, ? extends V> m);
+>     void clear();
+> 
+>     // Collection View Operations (can not invoke add/addAll but remove operations are possible)
+>     Set<K> keySet();
+>     Collection<V> values();
+>     Set<Map.Entry<K,V>> entrySet();  // can be used for iterating the Map
+>     public interface Entry {
+>         K getKey();
+>         V getValue();
+>         V setValue(V value);
+>     }
+> }
+> ```
+- note that in case of `keySet()` a `Set` was returned whereas in case of `values()` a `Collection` is returned as there can be dupicate values.
+- `entrySet()` returns a set view of all the mappings in the `Map`, and each mapping is an instance of the nested interface `Entry`.
+- we should be careful when using mutable objects as keys, as any modification to key may lead to modification of the `hashCode`. For example if we are using a `List` as a key, then if we modify the `List` then it's `hashCode` will also change. Below is `AbstractList`'s `hashCode()` definition:
+> ```java
+> public int hashCode() {
+>     int hashCode = 1;
+>     for (E e : this)
+>         hashCode = 31 * hashCode + (e == null ? 0 : e.hashCode());
+>     return hashCode;
+> }
+> ```
+- similar to `LinkedHastSet`, [`java.util.LinkedHashMap`](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html) preserves insertion order using a doubly linked list. It permits `null` and exactly one `null` key.
+- iteration speed of `LinkedHashSet`/`LinkedHashMap` is slightly faster than that of `HashSet`/`HashMap`. ([Read more...](https://stackoverflow.com/questions/12998568/hashmap-vs-linkedhashmap-performance-in-iteration-over-values))
+- `LinkedHashMap` can be used as a _LRU Cache_ ([example](./code/collections/MapDemo.java)).
+- [`java.util.TreeMap`](https://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html) is a class that implements the `SortedMap` interface using _red-black tree_ to store its elements. The elements are sorted in ascending order based on their natural ordering of keys or a specified comparator. It also implements the `NavigableMap` interface, which provides navigation methods for accessing the keys and values in a sorted map.
+- streams are of two types:
+  1. Byte Streams (`InputStream`, `OutputStream`)
+  2. Character Streams (`Reader`, `Writer`)
+- [`java.io.InputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html) and [`java.io.OutputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html) are the base abstract classes for all byte oriented input/output streams.
+- [`java.io.Reader`](https://docs.oracle.com/javase/8/docs/api/java/io/Reader.html) and [`java.io.Writer`](https://docs.oracle.com/javase/8/docs/api/java/io/Writer.html) are the base abstract classes for all character oriented input/output streams.
 </samp>

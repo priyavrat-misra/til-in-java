@@ -24,7 +24,6 @@ tabnew
 tabnew
 tabnew
 tabnew
-tabnew
 tabrewind
 edit ~/til-in-java/README.md
 set splitbelow splitright
@@ -42,12 +41,12 @@ set winwidth=1
 exe '1resize ' . ((&lines * 31 + 20) / 41)
 exe '2resize ' . ((&lines * 6 + 20) / 41)
 argglobal
-let s:l = 1097 - ((13 * winheight(0) + 15) / 31)
+let s:l = 1147 - ((22 * winheight(0) + 15) / 31)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1097
-normal! 0
+1147
+normal! $
 wincmd w
 argglobal
 terminal ++curwin ++cols=172 ++rows=6 
@@ -625,8 +624,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 89 + 86) / 172)
-exe 'vert 2resize ' . ((&columns * 82 + 86) / 172)
+exe 'vert 1resize ' . ((&columns * 85 + 86) / 172)
+exe 'vert 2resize ' . ((&columns * 86 + 86) / 172)
 argglobal
 let s:l = 1 - ((0 * winheight(0) + 19) / 38)
 if s:l < 1 | let s:l = 1 | endif
@@ -636,7 +635,7 @@ normal! zt
 normal! 0
 wincmd w
 argglobal
-if bufexists("exceptions/p1/HttpConnect.java") | buffer exceptions/p1/HttpConnect.java | else | edit exceptions/p1/HttpConnect.java | endif
+if bufexists("exceptions/TryWithResources.java") | buffer exceptions/TryWithResources.java | else | edit exceptions/TryWithResources.java | endif
 let s:l = 1 - ((0 * winheight(0) + 19) / 38)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
@@ -644,25 +643,8 @@ normal! zt
 1
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 89 + 86) / 172)
-exe 'vert 2resize ' . ((&columns * 82 + 86) / 172)
-tabnext
-edit exceptions/TryWithResources.java
-set splitbelow splitright
-set nosplitbelow
-set nosplitright
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-argglobal
-let s:l = 1 - ((0 * winheight(0) + 19) / 39)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-1
-normal! 0
+exe 'vert 1resize ' . ((&columns * 85 + 86) / 172)
+exe 'vert 2resize ' . ((&columns * 86 + 86) / 172)
 tabnext
 edit collections/ListDemo.java
 set splitbelow splitright
@@ -712,20 +694,20 @@ normal! 0
 wincmd w
 argglobal
 if bufexists("collections/IteratorDemo.java") | buffer collections/IteratorDemo.java | else | edit collections/IteratorDemo.java | endif
+let s:l = 2 - ((1 * winheight(0) + 9) / 19)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+2
+normal! 0
+wincmd w
+argglobal
+if bufexists("collections/ListIteratorDemo.java") | buffer collections/ListIteratorDemo.java | else | edit collections/ListIteratorDemo.java | endif
 let s:l = 1 - ((0 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
-normal! 0
-wincmd w
-argglobal
-if bufexists("collections/ListIteratorDemo.java") | buffer collections/ListIteratorDemo.java | else | edit collections/ListIteratorDemo.java | endif
-let s:l = 33 - ((11 * winheight(0) + 9) / 19)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-33
 normal! 0
 wincmd w
 exe '1resize ' . ((&lines * 18 + 20) / 41)
@@ -773,7 +755,7 @@ exe 'vert 1resize ' . ((&columns * 85 + 86) / 172)
 exe 'vert 2resize ' . ((&columns * 86 + 86) / 172)
 tabnext 1
 set stal=1
-badd +1068 ~/til-in-java/README.md
+badd +1097 ~/til-in-java/README.md
 badd +1 Grader.java
 badd +1 exceptions/assertions/A.java
 badd +1 oops/polymorphism/User.java
@@ -783,8 +765,9 @@ badd +1 binding/p1/A.java
 badd +1 binding/p2/Main.java
 badd +1 oops/interfaces/A.java
 badd +1 exceptions/p1/Main.java
-badd +1 exceptions/TryWithResources.java
+badd +0 exceptions/TryWithResources.java
 badd +1 collections/ListDemo.java
+badd +1 collections/HashSetDemo.java
 badd +1 GraderTest.java
 badd +1 exceptions/assertions/B.java
 badd +1 exceptions/assertions/p2/C.java
@@ -808,12 +791,10 @@ badd +1 oops/interfaces/AbstractA.java
 badd +1 oops/interfaces/X.java
 badd +1 oops/interfaces/C.java
 badd +1 oops/interfaces/Main.java
-badd +1 exceptions/p1/HttpConnect.java
 badd +1 CustomLinkedList.java
 badd +2 collections/IteratorDemo.java
 badd +1 collections/ListIteratorDemo.java
-badd +0 collections/HashSetDemo.java
-badd +0 collections/TreeSetDemo.java
+badd +1 collections/TreeSetDemo.java
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
