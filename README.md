@@ -41,7 +41,8 @@
 <a href="#day-34-">34</a> •
 <a href="#day-35-">35</a> •
 <a href="#day-36-">36</a> •
-<a href="#day-37-">37</a>
+<a href="#day-37-">37</a> •
+<a href="#day-38-">38</a>
 </details>
 
 ###### Day 00 [↑](#today-i-learned-in-java- "Back to Top")
@@ -1145,4 +1146,27 @@
   2. Character Streams (`Reader`, `Writer`)
 - [`java.io.InputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html) and [`java.io.OutputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html) are the base abstract classes for all byte oriented input/output streams.
 - [`java.io.Reader`](https://docs.oracle.com/javase/8/docs/api/java/io/Reader.html) and [`java.io.Writer`](https://docs.oracle.com/javase/8/docs/api/java/io/Writer.html) are the base abstract classes for all character oriented input/output streams.
+###### Day 38 [↑](#today-i-learned-in-java- "Back to Top")
+- `InputStream` is used to read data in groups of 8 bit bytes.
+- `abstract int read() throws IOException` reads 1 byte and returns as `int` between 0 & 255, and returns -1 if end of stream is detected.
+- `int read(byte[] b, int off, int len) throws IOException`
+  - the first byte read is stored into element b[off], the next one into b[off+1], and so on. The number of bytes read is, at most, equal to len. Let k be the number of bytes actually read; these bytes will be stored in elements b[off] through b[off+k-1], leaving elements b[off+k] through b[off+len-1] unaffected.
+  - returns bytes read or -1 if end if stream is detected
+  - internally it repeatedly invokes `read()`
+  - `int read(byte[] b) throws IOException` calls `read(b, 0, b.length)`
+- all read calls are _blocking_ i.e., when data is unavailable the method would wait until the data is available.
+- `OutputStream` is used to write data in groups of 8 bit bytes.
+- `abstract void write(int) throws IOException` writes only the least significant byte and remaining 24 bits are discarded.
+- `void write(byte[] b, int off, int len) throws IOExpection`
+  - writes len bytes from the specified byte array starting at offset off to this output stream. The general contract for write(b, off, len) is that some of the bytes in the array b are written to the output stream in order; element b[off] is the first byte written and b[off+len-1] is the last byte written by this operation.
+  - repeatedly invokes `write()`
+  - `void write(byte[] b) throws IOException` calls `write(b, 0, b.length)`
+![The java.io Package](./images/javaIO.png) ![Exception classes in java.io Package](./images/javaIOException)
+- [`java.io.FileInputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/FileInputStream.html) & [`java.io.FileOutputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/FileOutputStream.html) are used to read/write bytes from/to files respectively. These classes extend `InputStream` and `OutputStream` and provide implementations for `read()` and `write()`.
+- `FileOutputStream(String filename) throws FileNotFoundException` creates a new file if the file does not exists, and overwrites the file if it exists. But in `FileInputStream` if a file does not exists then it will throw an `FileNotFoundException` as there is no point creating an empty file and reading nothing from it.
+- `FileOutputStream` throws `FileNotFoundException` in the following cases:
+  - file cannot be created for writing
+  - file is a directory
+  - cannot be opened for any other reason
+- the above classes' way of reading and writing data is inefficient as it reads/writes single byte at a time. Instead, reading/writing from/to a block of memory buffer and flushing all the data to the disk is more efficient. There are two specialized classes which allows us to do that, those are [`java.io.BufferedInputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/BufferedInputStream.html) and [`java.io.BufferedOutputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/BufferedOutputStream.html).
 </samp>
