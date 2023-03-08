@@ -1161,7 +1161,7 @@
   - writes len bytes from the specified byte array starting at offset off to this output stream. The general contract for write(b, off, len) is that some of the bytes in the array b are written to the output stream in order; element b[off] is the first byte written and b[off+len-1] is the last byte written by this operation.
   - repeatedly invokes `write()`
   - `void write(byte[] b) throws IOException` calls `write(b, 0, b.length)`
-![The java.io Package](./images/javaIO.png) ![Exception classes in java.io Package](./images/javaIOException)
+![The java.io Package](./images/javaIO.png) ![Exception classes in java.io Package](./images/javaIOExceptions.png)
 - [`java.io.FileInputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/FileInputStream.html) & [`java.io.FileOutputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/FileOutputStream.html) are used to read/write bytes from/to files respectively. These classes extend `InputStream` and `OutputStream` and provide implementations for `read()` and `write()`.
 - `FileOutputStream(String filename) throws FileNotFoundException` creates a new file if the file does not exists, and overwrites the file if it exists. But in `FileInputStream` if a file does not exists then it will throw an `FileNotFoundException` as there is no point creating an empty file and reading nothing from it.
 - `FileOutputStream` throws `FileNotFoundException` in the following cases:
